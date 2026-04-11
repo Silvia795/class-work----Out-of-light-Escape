@@ -1,34 +1,32 @@
+using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class playerController : MonoBehaviour
+public class playerController : MonoBehaviour, IDamage
 {
     [SerializeField] CharacterController controller;
+    [Range(0, 100)] [SerializeField] int HP;
     [SerializeField] LayerMask ignoreLayer;
-
-    [Range(1, 10)] [SerializeField] int HP;
-    [Range(3, 7)] [SerializeField] int speed;
-    [Range(2, 5)] [SerializeField] int sprintMod;
-    [Range(5, 25)] [SerializeField] int jumpSpeed;
-    [Range(1, 10)] [SerializeField] int jumpMax;
-    [Range(15, 50)] [SerializeField] int gravity;
-
+    [SerializeField] int speed;
+    [SerializeField] int sprintMod;
+    [SerializeField] int jumpSpeed;
+    [SerializeField] int jumpMax;
+    [SerializeField] int gravity;
     [SerializeField] int shootDamage;
-    [SerializeField] int shootDist;
-    [SerializeField] float shootRate;
-
+    [SerializeField] int shootDistance;
+    [SerializeField] float fireRate;
     int jumpCount;
     int HPOrig;
-
-    float shootTimer; 
-
+    float shootTimer;
     Vector3 moveDir;
     Vector3 playerVel;
-
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         HPOrig = HP;
+
+        
     }
 
     // Update is called once per frame
@@ -40,27 +38,20 @@ public class playerController : MonoBehaviour
 
     void movement()
     {
-        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDist, Color.yellow);
-
+        Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDistance, Color.white);
         shootTimer += Time.deltaTime;
-
         if(controller.isGrounded)
         {
             jumpCount = 0;
             playerVel.y = 0;
-
         }
-
-        //moveDir = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-
         moveDir = Input.GetAxis("Horizontal") * transform.right + Input.GetAxis("Vertical") * transform.forward;
-        controller.Move(moveDir * speed * Time.deltaTime);
-        
+        controller.Move(moveDir.normalized * speed * Time.deltaTime);
         jump();
         controller.Move(playerVel * Time.deltaTime);
         playerVel.y -= gravity * Time.deltaTime;
 
-        if(Input.GetButton("Fire1") && shootTimer >= shootRate)
+        if(Input.GetButton("Fire1") && shootTimer >= fireRate && Time.timeScale >= 0)
         {
             shoot();
         }
@@ -90,12 +81,10 @@ public class playerController : MonoBehaviour
     void shoot()
     {
         shootTimer = 0;
-
         RaycastHit hit;
-        if(Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDist, ~ignoreLayer))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreLayer))
         {
             Debug.Log(hit.collider.name);
-
             IDamage dmg = hit.collider.GetComponent<IDamage>();
             if(dmg != null)
             {
@@ -104,6 +93,13 @@ public class playerController : MonoBehaviour
         }
     }
 
+    public void takeDamage(int amount)
+    {
+        HP -= amount;
 
-
+        if(HP <= 0)
+        {
+            gamemanager.instance.playerDeath();
+        }
+    }
 }
