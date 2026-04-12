@@ -15,6 +15,8 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] int shootDamage;
     [SerializeField] int shootDistance;
     [SerializeField] float fireRate;
+    [SerializeField] GameObject stunBulletPrefab;
+    [SerializeField] Transform shootPos;
     int jumpCount;
     int HPOrig;
     float shootTimer;
@@ -51,7 +53,7 @@ public class playerController : MonoBehaviour, IDamage
         controller.Move(playerVel * Time.deltaTime);
         playerVel.y -= gravity * Time.deltaTime;
 
-        if(Input.GetButton("Fire1") && shootTimer >= fireRate && Time.timeScale >= 0)
+        if(Input.GetButtonDown("Fire1") && shootTimer >= fireRate && Time.timeScale >= 0)
         {
             shoot();
         }
@@ -81,16 +83,12 @@ public class playerController : MonoBehaviour, IDamage
     void shoot()
     {
         shootTimer = 0;
-        RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreLayer))
+       if (stunBulletPrefab == null || shootPos == null)
         {
-            Debug.Log(hit.collider.name);
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
-            if(dmg != null)
-            {
-                dmg.takeDamage(shootDamage);
-            }
+            return;
         }
+
+        Instantiate(stunBulletPrefab, shootPos.position, Camera.main.transform.rotation);
     }
 
     public void takeDamage(int amount)

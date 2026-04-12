@@ -23,6 +23,7 @@ public class enemyAI : MonoBehaviour, IDamage
     float angleToPlayer;
     float stoppingDistOrig;
     bool playerInRange;
+    bool isStunned;
 
     Vector3 playerDir;
     Vector3 startingPos;
@@ -39,6 +40,9 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
+        if (isStunned)
+            return;
+
         shootTimer += Time.deltaTime;
         if(playerInRange && canSeePlayer())
         {
@@ -116,6 +120,15 @@ public class enemyAI : MonoBehaviour, IDamage
         }
     }
 
+    public void applyStun()
+    {
+        if (!gameObject.activeInHierarchy)
+            return;
+
+        StopCoroutine(nameof(stun));
+        StartCoroutine(stun());
+    }
+
     IEnumerator flashRed()
     {
         model.material.color = Color.red;
@@ -125,9 +138,25 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator stun()
     {
-        Instantiate(stunEffect, particlePos);
-        agent.enabled = false;
+        isStunned = true;
+
+        if (stunEffect != null && particlePos != null)
+        {
+            Instantiate(stunEffect, particlePos);
+        }
+
+        if (agent != null)
+        {
+            agent.enabled = false;
+        }
+
         yield return new WaitForSeconds(stunTimer);
-        agent.enabled = true;
+
+        if (agent != null)
+        {
+            agent.enabled = true;
+        }
+
+        isStunned = false;
     }
 }
