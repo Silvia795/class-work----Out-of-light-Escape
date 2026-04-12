@@ -27,6 +27,7 @@ public class gamemanager : MonoBehaviour
         playerScript = player.GetComponent<playerController>();
     }
 
+
     // Update is called once per frame
     void Update()
     {
