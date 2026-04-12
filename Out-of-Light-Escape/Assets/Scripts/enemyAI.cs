@@ -15,6 +15,9 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] int targetFaceSpeed;
     [SerializeField] int FOV;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] int stunTimer;
+    [SerializeField] ParticleSystem stunEffect;
+    [SerializeField] Transform particlePos;
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
@@ -109,6 +112,7 @@ public class enemyAI : MonoBehaviour, IDamage
         else
         {
             StartCoroutine(flashRed());
+            StartCoroutine(stun());
         }
     }
 
@@ -117,5 +121,13 @@ public class enemyAI : MonoBehaviour, IDamage
         model.material.color = Color.red;
         yield return new WaitForSeconds(0.1f);
         model.material.color = colorOrig;
+    }
+
+    IEnumerator stun()
+    {
+        Instantiate(stunEffect, particlePos);
+        agent.enabled = false;
+        yield return new WaitForSeconds(stunTimer);
+        agent.enabled = true;
     }
 }
