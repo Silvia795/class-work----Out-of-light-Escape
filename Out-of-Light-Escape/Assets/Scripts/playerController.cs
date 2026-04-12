@@ -82,13 +82,25 @@ public class playerController : MonoBehaviour, IDamage
 
     void shoot()
     {
+        Debug.Log("PLAYER SHOOT CALLED");
         shootTimer = 0;
-       if (stunBulletPrefab == null || shootPos == null)
+
+        if (stunBulletPrefab == null || shootPos == null)
         {
             return;
         }
 
-        Instantiate(stunBulletPrefab, shootPos.position, Camera.main.transform.rotation);
+        GameObject spawnedBullet = Instantiate(
+            stunBulletPrefab,
+            shootPos.position + Camera.main.transform.forward * 1f,
+            Camera.main.transform.rotation
+        );
+
+        Rigidbody bulletRb = spawnedBullet.GetComponent<Rigidbody>();
+        if (bulletRb != null)
+        {
+            bulletRb.linearVelocity = Camera.main.transform.forward * 25f;
+        }
     }
 
     public void takeDamage(int amount)
