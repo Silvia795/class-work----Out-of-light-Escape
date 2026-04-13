@@ -2135,7 +2135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95caea08d0bbd54690374ed46572515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
-  HP: 0
+  HP: 5
   model: {fileID: 676622932}
   bullet: {fileID: 0}
   shootRate: 0.5
