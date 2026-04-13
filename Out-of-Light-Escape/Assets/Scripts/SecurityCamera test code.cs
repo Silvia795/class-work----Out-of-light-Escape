@@ -5,9 +5,9 @@ public class SecurityCamera : MonoBehaviour
 {
     // This code is a test code for the SecurityCamera model
 
-    [SerializeField] float maxAngle = 90f;
-    [SerializeField] float minTime = 10f;
-    [SerializeField] float maxTime = 20f;
+    [Range(5f, 90f)][SerializeField] float maxAngle = 90f;
+    [Range (10f, 30f)][SerializeField] float minTime = 10f;
+    [Range(10f, 30f)][SerializeField] float maxTime = 20f;
 
     Quaternion startRotation;
     void Start()
