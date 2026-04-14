@@ -2997,19 +2997,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95caea08d0bbd54690374ed46572515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
-  HP: 5
   model: {fileID: 565810553}
+  agent: {fileID: 565810550}
+  HP: 5
+  targetFaceSpeed: 3
+  FOV: 10
   bullet: {fileID: 3552667912173612551, guid: 2c9c90375d12963488dac6bb7813f02f, type: 3}
   shootRate: 0.5
   shootPos: {fileID: 1922346945}
   gunPivot: {fileID: 527339988}
   gunRotateSpeed: 3
-  targetFaceSpeed: 3
-  FOV: 50
-  agent: {fileID: 565810550}
   stunTimer: 1
   stunEffect: {fileID: 5894327660429377950, guid: 6980a48c33c2d8b43a79e66f73db77dd, type: 3}
   particlePos: {fileID: 1720104342}
+  roamDist: 10
+  roamPauseTime: 3
 --- !u!33 &565810555
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -3027,7 +3029,7 @@ Transform:
   m_GameObject: {fileID: 565810549}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18.63293, y: 2.25, z: 12.35933}
+  m_LocalPosition: {x: 5.2, y: 2.25, z: 12.35933}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3920,19 +3922,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95caea08d0bbd54690374ed46572515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
-  HP: 2
   model: {fileID: 813751004}
+  agent: {fileID: 0}
+  HP: 2
+  targetFaceSpeed: 0
+  FOV: 0
   bullet: {fileID: 0}
   shootRate: 0
   shootPos: {fileID: 0}
   gunPivot: {fileID: 0}
   gunRotateSpeed: 0
-  targetFaceSpeed: 0
-  FOV: 0
-  agent: {fileID: 0}
   stunTimer: 0
   stunEffect: {fileID: 0}
   particlePos: {fileID: 0}
+  roamDist: 0
+  roamPauseTime: 0
 --- !u!136 &813751003
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4350,19 +4354,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95caea08d0bbd54690374ed46572515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
-  HP: 2
   model: {fileID: 935662546}
+  agent: {fileID: 0}
+  HP: 2
+  targetFaceSpeed: 0
+  FOV: 0
   bullet: {fileID: 0}
   shootRate: 0
   shootPos: {fileID: 0}
   gunPivot: {fileID: 0}
   gunRotateSpeed: 0
-  targetFaceSpeed: 0
-  FOV: 0
-  agent: {fileID: 0}
   stunTimer: 0
   stunEffect: {fileID: 0}
   particlePos: {fileID: 0}
+  roamDist: 0
+  roamPauseTime: 0
 --- !u!136 &935662545
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4956,7 +4962,7 @@ Transform:
   m_GameObject: {fileID: 953089283}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7794963, z: -0, w: -0.62640685}
-  m_LocalPosition: {x: -4.56393, y: 1.285, z: 14.26533}
+  m_LocalPosition: {x: -13.2, y: 1.285, z: 53.47}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5147,19 +5153,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95caea08d0bbd54690374ed46572515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
-  HP: 2
   model: {fileID: 962895525}
+  agent: {fileID: 0}
+  HP: 2
+  targetFaceSpeed: 0
+  FOV: 0
   bullet: {fileID: 0}
   shootRate: 0
   shootPos: {fileID: 0}
   gunPivot: {fileID: 0}
   gunRotateSpeed: 0
-  targetFaceSpeed: 0
-  FOV: 0
-  agent: {fileID: 0}
   stunTimer: 0
   stunEffect: {fileID: 0}
   particlePos: {fileID: 0}
+  roamDist: 0
+  roamPauseTime: 0
 --- !u!136 &962895524
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -5986,19 +5994,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95caea08d0bbd54690374ed46572515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
-  HP: 2
   model: {fileID: 1137976579}
+  agent: {fileID: 0}
+  HP: 2
+  targetFaceSpeed: 0
+  FOV: 0
   bullet: {fileID: 0}
   shootRate: 0
   shootPos: {fileID: 0}
   gunPivot: {fileID: 0}
   gunRotateSpeed: 0
-  targetFaceSpeed: 0
-  FOV: 0
-  agent: {fileID: 0}
   stunTimer: 0
   stunEffect: {fileID: 0}
   particlePos: {fileID: 0}
+  roamDist: 0
+  roamPauseTime: 0
 --- !u!136 &1137976578
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8062,19 +8072,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95caea08d0bbd54690374ed46572515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
-  HP: 2
   model: {fileID: 1542830848}
+  agent: {fileID: 0}
+  HP: 2
+  targetFaceSpeed: 0
+  FOV: 0
   bullet: {fileID: 0}
   shootRate: 0
   shootPos: {fileID: 0}
   gunPivot: {fileID: 0}
   gunRotateSpeed: 0
-  targetFaceSpeed: 0
-  FOV: 0
-  agent: {fileID: 0}
   stunTimer: 0
   stunEffect: {fileID: 0}
   particlePos: {fileID: 0}
+  roamDist: 0
+  roamPauseTime: 0
 --- !u!136 &1542830847
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -8753,19 +8765,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95caea08d0bbd54690374ed46572515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
-  HP: 2
   model: {fileID: 1830153120}
+  agent: {fileID: 0}
+  HP: 2
+  targetFaceSpeed: 0
+  FOV: 0
   bullet: {fileID: 0}
   shootRate: 0
   shootPos: {fileID: 0}
   gunPivot: {fileID: 0}
   gunRotateSpeed: 0
-  targetFaceSpeed: 0
-  FOV: 0
-  agent: {fileID: 0}
   stunTimer: 0
   stunEffect: {fileID: 0}
   particlePos: {fileID: 0}
+  roamDist: 0
+  roamPauseTime: 0
 --- !u!136 &1830153119
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -9205,19 +9219,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95caea08d0bbd54690374ed46572515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
-  HP: 2
   model: {fileID: 1926356335}
+  agent: {fileID: 0}
+  HP: 2
+  targetFaceSpeed: 0
+  FOV: 0
   bullet: {fileID: 0}
   shootRate: 0
   shootPos: {fileID: 0}
   gunPivot: {fileID: 0}
   gunRotateSpeed: 0
-  targetFaceSpeed: 0
-  FOV: 0
-  agent: {fileID: 0}
   stunTimer: 0
   stunEffect: {fileID: 0}
   particlePos: {fileID: 0}
+  roamDist: 0
+  roamPauseTime: 0
 --- !u!136 &1926356334
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -10411,19 +10427,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95caea08d0bbd54690374ed46572515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
-  HP: 2
   model: {fileID: 2111409599}
+  agent: {fileID: 0}
+  HP: 2
+  targetFaceSpeed: 0
+  FOV: 0
   bullet: {fileID: 0}
   shootRate: 0
   shootPos: {fileID: 0}
   gunPivot: {fileID: 0}
   gunRotateSpeed: 0
-  targetFaceSpeed: 0
-  FOV: 0
-  agent: {fileID: 0}
   stunTimer: 0
   stunEffect: {fileID: 0}
   particlePos: {fileID: 0}
+  roamDist: 0
+  roamPauseTime: 0
 --- !u!136 &2111409598
 CapsuleCollider:
   m_ObjectHideFlags: 0

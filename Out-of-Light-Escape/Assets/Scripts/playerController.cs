@@ -7,17 +7,20 @@ public class playerController : MonoBehaviour, IDamage
     [SerializeField] CharacterController controller;
     [Range(0, 100)] [SerializeField] int HP;
     [SerializeField] LayerMask ignoreLayer;
-    [SerializeField] int speed;
-    [SerializeField] int sprintMod;
-    [SerializeField] int jumpSpeed;
-    [SerializeField] int jumpMax;
-    [SerializeField] int gravity;
-    [SerializeField] int shootDamage;
-    [SerializeField] int shootDistance;
-    [SerializeField] float fireRate;
+    [Range(1, 10) ][SerializeField] int speed;
+    [Range(1, 10)] [SerializeField] int sprintMod;
+    [Range(1, 10)] [SerializeField] int jumpSpeed;
+    [Range(1, 10)] [SerializeField] int jumpMax;
+    [Range(1, 10)] [SerializeField] int gravity;
+    [Range(1, 10)] [SerializeField] int shootDamage;
+    [Range(1, 10)] [SerializeField] int shootDistance;
+    [Range(1, 10)] [SerializeField] float fireRate;
+
     int jumpCount;
     int HPOrig;
+
     float shootTimer;
+
     Vector3 moveDir;
     Vector3 playerVel;
 

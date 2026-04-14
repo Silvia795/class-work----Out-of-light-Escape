@@ -4,24 +4,37 @@ using UnityEngine.AI;
 
 public class enemyAI : MonoBehaviour, IDamage
 {
-
-    [SerializeField] int HP;
+    [Header("----- Components -----")]
     [SerializeField] Renderer model;
+    [SerializeField] NavMeshAgent agent;
+    
+    [Header("----- Ability Stats -----")]
+    [Range(1, 10)] [SerializeField] int HP;
+    [Range(1, 10)] [SerializeField] int targetFaceSpeed;
+    [Range(1, 10)] [SerializeField] int FOV;
+    
+    [Header("----- Gun Stats -----")]
     [SerializeField] GameObject bullet;
-    [SerializeField] float shootRate;
+    [Range(0.1f, 10)] [SerializeField] float shootRate;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform gunPivot;
-    [SerializeField] int gunRotateSpeed;
-    [SerializeField] int targetFaceSpeed;
-    [SerializeField] int FOV;
-    [SerializeField] NavMeshAgent agent;
+    [Range(1, 10)] [SerializeField] int gunRotateSpeed;
+
+    [Header("----- Gun Stats -----")]
     [SerializeField] int stunTimer;
     [SerializeField] ParticleSystem stunEffect;
     [SerializeField] Transform particlePos;
+
+    [Header("----- Roaming Stats -----")]
+    [Range(1, 500)] [SerializeField] int roamDist;
+    [Range(0, 10)] [SerializeField] int roamPauseTime;
+
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
     float stoppingDistOrig;
+    float roamTimer;
+
     bool playerInRange;
 
     Vector3 playerDir;
@@ -33,20 +46,47 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         colorOrig = model.material.color;
         gamemanager.instance.updateGameGoal(1);
-        
+        startingPos = transform.position;
+        stoppingDistOrig = agent.stoppingDistance;
     }
 
     // Update is called once per frame
     void Update()
     {
-        shootTimer += Time.deltaTime;
-        if(playerInRange && canSeePlayer())
+        if(playerInRange && !canSeePlayer())
         {
-          
+            checkRoam();
+        }
+        else if (!playerInRange)
+        {
+                checkRoam();
         }
 
-        
+        void checkRoam()
+        {
+             if(agent.remainingDistance < 0.01f)
+             {
+                    roamTimer += Time.deltaTime;
+
+                    if (roamTimer >= roamPauseTime)
+                        roam();
+             }
+        }
+
+        void roam()
+        {
+                roamTimer = 0;
+                agent.stoppingDistance = 0;
+
+                Vector3 ranPos = Random.insideUnitSphere * roamDist;
+                ranPos += startingPos;
+
+                NavMeshHit hit;
+                NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
+                agent.SetDestination(hit.position);
+        }
     }
+
     bool canSeePlayer()
     {
         playerDir = gamemanager.instance.player.transform.position - transform.position;
@@ -64,10 +104,14 @@ public class enemyAI : MonoBehaviour, IDamage
                     shoot();
                 }
                 agent.SetDestination(gamemanager.instance.player.transform.position);
+                shootTimer += Time.deltaTime;
+
+                agent.stoppingDistance = stoppingDistOrig;
                 return true;
             }
             
         }
+        agent.stoppingDistance = 0;
         return false;
     }
     void shoot()
@@ -98,6 +142,7 @@ public class enemyAI : MonoBehaviour, IDamage
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            agent.stoppingDistance = 0;
         }
     }
     public void takeDamage(int amount)
