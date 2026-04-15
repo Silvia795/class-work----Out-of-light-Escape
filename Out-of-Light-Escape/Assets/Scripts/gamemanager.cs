@@ -12,6 +12,8 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuDeath;
     [SerializeField] GameObject menuWin;
     [SerializeField] TMP_Text gameGoalCountText;
+    [SerializeField] TMP_Text EnemiesDetectedText;
+
     public Image playerHPBar;
     public GameObject playerDamageFlash;
     public bool isPaused;
@@ -19,6 +21,7 @@ public class gamemanager : MonoBehaviour
     public playerController playerScript;
     float timeScaleOrig;
     int gameGoalCount;
+    int enemiesSeeingPlayer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -69,17 +72,29 @@ public class gamemanager : MonoBehaviour
         menuActive = menuDeath;
         menuActive.SetActive(true);
     }
+
+    public void UpdateEnemySeeingPlayer(int amount)
+    {
+        enemiesSeeingPlayer += amount;
+        enemiesSeeingPlayer = Mathf.Max(0, enemiesSeeingPlayer);
+
+        EnemiesDetectedText.text = "Enemies Watching ";
+        
+
+    }
+
     public void updateGameGoal(int amount)
     {
         gameGoalCount += amount;
         gameGoalCountText.text = gameGoalCount.ToString("F0");
-        if (gameGoalCount <= 0)
-        {
-            //you win!!
-            statePause();
-            menuActive = menuWin;
-            menuActive.SetActive(true);
-        }
     }
+        //    if (gameGoalCount <= 0)
+        //    {
+        //        //you win!!
+        //        statePause();
+        //        menuActive = menuWin;
+        //        menuActive.SetActive(true);
+        //    }
+        //}
 
-}
+    }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
+using Unity.VisualScripting;
 
 public class enemyAI : MonoBehaviour, IDamage
 {
@@ -36,6 +37,7 @@ public class enemyAI : MonoBehaviour, IDamage
     float stoppingDistOrig;
     float roamTimer;
 
+    bool reportedSeeingPlayer = false;
     bool playerInRange;
     bool isStunned;
 
@@ -103,7 +105,20 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             if(hit.collider.CompareTag("Player") && angleToPlayer <= FOV)
             {
-              
+                //new line of code here for Enemy Detecting Player
+                if(!reportedSeeingPlayer)
+                {
+                    gamemanager.instance.UpdateEnemySeeingPlayer(1);
+                    reportedSeeingPlayer = true;
+                }
+
+                if (reportedSeeingPlayer) 
+                {
+                    gamemanager.instance.UpdateEnemySeeingPlayer(-1);
+                    reportedSeeingPlayer = false;
+                }
+              //new code ends here
+
                 if (!isStunned)
                 {
                     if (shootTimer >= shootRate)
