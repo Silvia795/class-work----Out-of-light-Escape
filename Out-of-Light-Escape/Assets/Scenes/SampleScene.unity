@@ -8747,6 +8747,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 235013181685171010, guid: bac4f431b20e5be4bbfae5f8335208cd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 754554904646278292, guid: bac4f431b20e5be4bbfae5f8335208cd, type: 3}
+      propertyPath: m_StoppingDistance
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 890541649996216117, guid: bac4f431b20e5be4bbfae5f8335208cd, type: 3}
       propertyPath: m_LocalPosition.x
       value: -58.93126
@@ -8791,9 +8799,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tank Enemy (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4227088899552275923, guid: bac4f431b20e5be4bbfae5f8335208cd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4450575804143421647, guid: bac4f431b20e5be4bbfae5f8335208cd, type: 3}
       propertyPath: HP
       value: 681
+      objectReference: {fileID: 0}
+    - target: {fileID: 4450575804143421647, guid: bac4f431b20e5be4bbfae5f8335208cd, type: 3}
+      propertyPath: FOV
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6716172220157538448, guid: bac4f431b20e5be4bbfae5f8335208cd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6807982288599646733, guid: bac4f431b20e5be4bbfae5f8335208cd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6900008320894027397, guid: bac4f431b20e5be4bbfae5f8335208cd, type: 3}
+      propertyPath: m_Radius
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6900008320894027397, guid: bac4f431b20e5be4bbfae5f8335208cd, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6900008320894027397, guid: bac4f431b20e5be4bbfae5f8335208cd, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9033274159394223047, guid: bac4f431b20e5be4bbfae5f8335208cd, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9579,10 +9619,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tank Enemy
       objectReference: {fileID: 0}
-    - target: {fileID: 4450575804143421647, guid: bac4f431b20e5be4bbfae5f8335208cd, type: 3}
-      propertyPath: HP
-      value: 542
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9757,10 +9793,6 @@ PrefabInstance:
     - target: {fileID: 3934060000238933618, guid: 268866a6258610f4f91c453f5a1ee534, type: 3}
       propertyPath: m_Name
       value: Ninja Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 6104162950465821948, guid: 268866a6258610f4f91c453f5a1ee534, type: 3}
-      propertyPath: HP
-      value: 598
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
