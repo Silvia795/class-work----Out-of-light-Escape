@@ -528,7 +528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95caea08d0bbd54690374ed46572515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
-  HP: 5
+  HP: 25
   model: {fileID: 726693179}
   bullet: {fileID: 3552667912173612551, guid: 2c9c90375d12963488dac6bb7813f02f, type: 3}
   shootRate: 0.5
@@ -1418,7 +1418,7 @@ GameObject:
   - component: {fileID: 1677717154}
   - component: {fileID: 1677717153}
   m_Layer: 0
-  m_Name: Speed Enemy
+  m_Name: Ninja Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1551,7 +1551,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c95caea08d0bbd54690374ed46572515, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
-  HP: 5
+  HP: 15
   model: {fileID: 1677717156}
   bullet: {fileID: 3552667912173612551, guid: 2c9c90375d12963488dac6bb7813f02f, type: 3}
   shootRate: 0.5
