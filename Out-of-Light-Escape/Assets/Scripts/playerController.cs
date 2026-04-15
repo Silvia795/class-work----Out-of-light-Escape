@@ -1,5 +1,6 @@
 using System;
 using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 
 public class playerController : MonoBehaviour, IDamage
@@ -28,8 +29,9 @@ public class playerController : MonoBehaviour, IDamage
     void Start()
     {
         HPOrig = HP;
+        updatePlayerUI();
 
-        
+
     }
 
     // Update is called once per frame
@@ -99,10 +101,22 @@ public class playerController : MonoBehaviour, IDamage
     public void takeDamage(int amount)
     {
         HP -= amount;
+        updatePlayerUI();
+        StartCoroutine(flashDamage());
 
-        if(HP <= 0)
+        if (HP <= 0)
         {
             gamemanager.instance.playerDeath();
         }
+    }
+    public void updatePlayerUI()
+    {
+        gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
+    }
+    IEnumerator flashDamage()
+    {
+        gamemanager.instance.playerDamageFlash.SetActive(true);
+        yield return new WaitForSeconds(0.1f);
+        gamemanager.instance.playerDamageFlash.SetActive(false);
     }
 }

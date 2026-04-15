@@ -7,11 +7,12 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("----- Components -----")]
     [SerializeField] Renderer model;
     [SerializeField] NavMeshAgent agent;
-    
+    [SerializeField] Transform modelPivot;
+    [SerializeField] float knockedDownY = -0.5f;
     [Header("----- Ability Stats -----")]
-    [Range(1, 10)] [SerializeField] int HP;
+    [Range(1, 1000)] [SerializeField] int HP;
     [Range(1, 10)] [SerializeField] int targetFaceSpeed;
-    [Range(1, 10)] [SerializeField] int FOV;
+    [Range(40, 80)] [SerializeField] int FOV;
     
     [Header("----- Gun Stats -----")]
     [SerializeField] GameObject bullet;
@@ -36,9 +37,12 @@ public class enemyAI : MonoBehaviour, IDamage
     float roamTimer;
 
     bool playerInRange;
+    bool isStunned;
 
     Vector3 playerDir;
     Vector3 startingPos;
+    Vector3 modelStartPos;
+    Quaternion modelStartRot;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -48,6 +52,8 @@ public class enemyAI : MonoBehaviour, IDamage
         gamemanager.instance.updateGameGoal(1);
         startingPos = transform.position;
         stoppingDistOrig = agent.stoppingDistance;
+        modelStartPos = modelPivot.localPosition;
+        modelStartRot = modelPivot.localRotation;
     }
 
     // Update is called once per frame
@@ -97,11 +103,15 @@ public class enemyAI : MonoBehaviour, IDamage
         {
             if(hit.collider.CompareTag("Player") && angleToPlayer <= FOV)
             {
-                rotateToTarget();
-                gunRotate();
-                if (shootTimer >= shootRate)
+              
+                if (!isStunned)
                 {
-                    shoot();
+                    if (shootTimer >= shootRate)
+                    {
+                        rotateToTarget();
+                        gunRotate();
+                        shoot();
+                    }
                 }
                 agent.SetDestination(gamemanager.instance.player.transform.position);
                 shootTimer += Time.deltaTime;
@@ -170,9 +180,29 @@ public class enemyAI : MonoBehaviour, IDamage
 
     IEnumerator stun()
     {
-        Instantiate(stunEffect, particlePos);
-        agent.enabled = false;
+        if (modelPivot != null)
+        {
+            modelPivot.localRotation = Quaternion.Euler(0f, 0f, 90f);
+
+            Vector3 knockPos = modelStartPos;
+            knockPos.y += knockedDownY;
+            modelPivot.localPosition = knockPos;
+        }
+
+        isStunned = true;
+        agent.isStopped = true;
+        Instantiate(stunEffect, particlePos.position, particlePos.rotation);
+
         yield return new WaitForSeconds(stunTimer);
-        agent.enabled = true;
+
+        if (modelPivot != null)
+        {
+            modelPivot.localRotation = modelStartRot;
+            modelPivot.localPosition = modelStartPos;
+        }
+
+        agent.isStopped = false;
+            isStunned = false;
+      
     }
 }
