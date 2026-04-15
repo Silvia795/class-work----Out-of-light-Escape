@@ -400,7 +400,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!195 &726693176
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -530,9 +530,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
   model: {fileID: 726693179}
   agent: {fileID: 726693176}
+  modelPivot: {fileID: 0}
+  knockedDownY: -0.5
   HP: 10
   targetFaceSpeed: 3
-  FOV: 10
+  FOV: 40
   bullet: {fileID: 3552667912173612551, guid: 2c9c90375d12963488dac6bb7813f02f, type: 3}
   shootRate: 0.5
   shootPos: {fileID: 1912933381}
@@ -1425,7 +1427,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!195 &1677717153
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1555,9 +1557,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::enemyAI
   model: {fileID: 1677717156}
   agent: {fileID: 1677717153}
+  modelPivot: {fileID: 0}
+  knockedDownY: -0.5
   HP: 10
   targetFaceSpeed: 3
-  FOV: 10
+  FOV: 40
   bullet: {fileID: 3552667912173612551, guid: 2c9c90375d12963488dac6bb7813f02f, type: 3}
   shootRate: 0.5
   shootPos: {fileID: 522306015}
