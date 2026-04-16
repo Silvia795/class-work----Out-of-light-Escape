@@ -11,6 +11,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuDeath;
     [SerializeField] GameObject menuWin;
+    [SerializeField] GameObject reticle;
     [SerializeField] TMP_Text gameGoalCountText;
     public Image playerHPBar;
     public GameObject playerDamageFlash;
@@ -53,6 +54,7 @@ public class gamemanager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        reticle.SetActive(false);
     }
     public void stateResume()
     {
@@ -62,6 +64,7 @@ public class gamemanager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(false);
         menuActive = null;
+        reticle.SetActive(true);
     }
     public void playerDeath()
     {
