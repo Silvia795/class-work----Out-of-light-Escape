@@ -20,7 +20,6 @@ public class gamemanager : MonoBehaviour
     public playerController playerScript;
     float timeScaleOrig;
     int gameGoalCount;
-    public bool isPlayerSafe = true;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -29,7 +28,6 @@ public class gamemanager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
-        isPlayerSafe = true;
     }
 
     // Update is called once per frame

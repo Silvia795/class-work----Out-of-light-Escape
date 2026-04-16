@@ -65,7 +65,7 @@ public class enemyAI : MonoBehaviour, IDamage
         }
         else if (!playerInRange)
         {
-            checkRoam();
+                checkRoam();
         }
 
         void checkRoam()
@@ -101,7 +101,7 @@ public class enemyAI : MonoBehaviour, IDamage
         RaycastHit hit;
         if(Physics.Raycast(transform.position, playerDir, out hit))
         {
-            if(hit.collider.CompareTag("Player") && angleToPlayer <= FOV && !gamemanager.instance.isPlayerSafe)
+            if(hit.collider.CompareTag("Player") && angleToPlayer <= FOV)
             {
               
                 if (!isStunned)

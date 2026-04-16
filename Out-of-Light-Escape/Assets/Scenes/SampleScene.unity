@@ -357,8 +357,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.AI.Navigation::Unity.AI.Navigation.NavMeshSurface
   m_SerializedVersion: 0
   m_AgentTypeID: 0
-  m_CollectObjects: 0
-  m_Size: {x: 10, y: 10, z: 10}
+  m_CollectObjects: 1
+  m_Size: {x: 80, y: 10, z: 71}
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
@@ -384,11 +384,11 @@ Transform:
   m_GameObject: {fileID: 600838333}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.144, y: 0.49, z: -0.006}
+  m_LocalScale: {x: 0.0066666664, y: 1, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 861409273}
+  m_Father: {fileID: 9049433831228846749}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &861409272
 GameObject:
@@ -421,7 +421,6 @@ Transform:
   m_Children:
   - {fileID: 953089289}
   - {fileID: 565810556}
-  - {fileID: 600838335}
   - {fileID: 183893108}
   - {fileID: 2022386536}
   - {fileID: 5075554156943430581}
@@ -833,7 +832,6 @@ MonoBehaviour:
   isPaused: 0
   player: {fileID: 0}
   playerScript: {fileID: 0}
-  isPlayerSafe: 0
 --- !u!4 &1548483476
 Transform:
   m_ObjectHideFlags: 0
@@ -2114,7 +2112,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 1822079495256273626, guid: bad26e6485e6a1142abb10d971634f86, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 600838335}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bad26e6485e6a1142abb10d971634f86, type: 3}
 --- !u!1 &1476820714208417752
@@ -6209,7 +6210,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8250711442978711099, guid: dd1a582dce3e41c4ab2d51f82983059b, type: 3}
       propertyPath: shootDistance
-      value: 10
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

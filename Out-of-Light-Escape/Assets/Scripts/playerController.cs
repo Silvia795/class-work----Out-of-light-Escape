@@ -14,12 +14,11 @@ public class playerController : MonoBehaviour, IDamage
     [Range(1, 10)] [SerializeField] int jumpMax;
     [Range(1, 10)] [SerializeField] int gravity;
     [Range(1, 10)] [SerializeField] int shootDamage;
-    [Range(5, 100)] [SerializeField] int shootDistance;
+    [Range(1, 10)] [SerializeField] int shootDistance;
     [Range(1, 10)] [SerializeField] float fireRate;
 
     int jumpCount;
     int HPOrig;
-    
 
     float shootTimer;
 
@@ -57,7 +56,7 @@ public class playerController : MonoBehaviour, IDamage
         controller.Move(playerVel * Time.deltaTime);
         playerVel.y -= gravity * Time.deltaTime;
 
-        if(Input.GetButton("Fire1") && shootTimer >= fireRate && Time.timeScale >= 0 && !gamemanager.instance.isPaused)
+        if(Input.GetButton("Fire1") && shootTimer >= fireRate && Time.timeScale >= 0)
         {
             shoot();
         }
@@ -86,10 +85,6 @@ public class playerController : MonoBehaviour, IDamage
 
     void shoot()
     {
-        if (gamemanager.instance.isPlayerSafe)
-        {
-            gamemanager.instance.isPlayerSafe = false;
-        }
         shootTimer = 0;
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreLayer))
@@ -121,7 +116,7 @@ public class playerController : MonoBehaviour, IDamage
     IEnumerator flashDamage()
     {
         gamemanager.instance.playerDamageFlash.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSecondsRealtime(0.1f);
         gamemanager.instance.playerDamageFlash.SetActive(false);
     }
 }
