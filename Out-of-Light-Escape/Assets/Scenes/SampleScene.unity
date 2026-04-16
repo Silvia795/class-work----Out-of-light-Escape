@@ -2466,7 +2466,7 @@ GameObject:
   - component: {fileID: 582817667}
   - component: {fileID: 582817666}
   m_Layer: 5
-  m_Name: Paused
+  m_Name: You've Escaped!
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9269,7 +9269,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 123185230}
         m_TargetAssemblyTypeName: ButtonFunctions, Assembly-CSharp
-        m_MethodName: resume
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10945,6 +10945,10 @@ PrefabInstance:
     - target: {fileID: 8250711442978711099, guid: dd1a582dce3e41c4ab2d51f82983059b, type: 3}
       propertyPath: HP
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8250711442978711099, guid: dd1a582dce3e41c4ab2d51f82983059b, type: 3}
+      propertyPath: shootDistance
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

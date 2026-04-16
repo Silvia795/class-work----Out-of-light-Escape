@@ -106,10 +106,11 @@ public class enemyAI : MonoBehaviour, IDamage
               
                 if (!isStunned)
                 {
+                    rotateToTarget();
+                    gunRotate();
+
                     if (shootTimer >= shootRate)
                     {
-                        rotateToTarget();
-                        gunRotate();
                         shoot();
                     }
                 }
