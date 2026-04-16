@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8334916757059562026}
   - component: {fileID: -8982770864644425942}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Stun Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

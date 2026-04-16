@@ -321,7 +321,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3730022887328605011}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -64.84, y: 2.25, z: 24.41}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
@@ -353,7 +353,7 @@ MonoBehaviour:
   agent: {fileID: 754554904646278292}
   modelPivot: {fileID: 1225574058146594644}
   knockedDownY: -0.5
-  HP: 542
+  HP: 30
   targetFaceSpeed: 3
   FOV: 60
   bullet: {fileID: 3552667912173612551, guid: 2c9c90375d12963488dac6bb7813f02f, type: 3}
@@ -434,7 +434,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 30
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &8722610011661968399
 CapsuleCollider:
