@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9089271507364906365}
   - component: {fileID: 7384670212451857834}
   - component: {fileID: 6807982288599646733}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8960940343055147055}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ParticlePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 6211821486123458451}
   - component: {fileID: 6249274531116172004}
   - component: {fileID: 235013181685171010}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun Slide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -269,7 +269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4345945592209778130}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShootPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -306,7 +306,7 @@ GameObject:
   - component: {fileID: 6900008320894027397}
   - component: {fileID: 8722610011661968399}
   - component: {fileID: 754554904646278292}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tank Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -493,7 +493,7 @@ GameObject:
   - component: {fileID: 2340762250532550564}
   - component: {fileID: 5563251010058797458}
   - component: {fileID: 4227088899552275923}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -608,7 +608,7 @@ GameObject:
   - component: {fileID: 2828097146745180882}
   - component: {fileID: 3372196010417014789}
   - component: {fileID: 9033274159394223047}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -722,7 +722,7 @@ GameObject:
   - component: {fileID: 5955503126980884325}
   - component: {fileID: 6172256742897218616}
   - component: {fileID: 6716172220157538448}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -831,7 +831,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1656828367857900640}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GunPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

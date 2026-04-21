@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3573778268286197634}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ParticlePos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5108850132272425319}
   - component: {fileID: 8445471528372372571}
   - component: {fileID: 2133710178796237279}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun Slide
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   - component: {fileID: 6521079002945514053}
   - component: {fileID: 8028853590716883159}
   - component: {fileID: 8224432177105584190}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Basic Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -345,7 +345,7 @@ GameObject:
   - component: {fileID: 4447040777424236669}
   - component: {fileID: 5062715405533461699}
   - component: {fileID: 291110903199706294}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 6861545005913174769}
   - component: {fileID: 3880447805880134571}
   - component: {fileID: 6455266956988190241}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -569,7 +569,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4033162324371911190}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GunPivot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -601,7 +601,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4403310637648071221}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ShootPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -635,7 +635,7 @@ GameObject:
   - component: {fileID: 9173168954778239463}
   - component: {fileID: 3288306593261557420}
   - component: {fileID: 3536820380560297305}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Gun Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -749,7 +749,7 @@ GameObject:
   - component: {fileID: 4904365353109483946}
   - component: {fileID: 4285928909812944083}
   - component: {fileID: 233483525193825899}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
