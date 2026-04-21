@@ -16,6 +16,8 @@ public class playerController : MonoBehaviour, IDamage
     [Range(1, 10)] [SerializeField] int shootDamage;
     [Range(1, 10)] [SerializeField] int shootDistance;
     [Range(1, 10)] [SerializeField] float fireRate;
+    [SerializeField] ParticleSystem defaultHitEffect;
+    [SerializeField] ParticleSystem enemyHitEffcet;
 
     int jumpCount;
     int HPOrig;
@@ -90,7 +92,12 @@ public class playerController : MonoBehaviour, IDamage
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, shootDistance, ~ignoreLayer))
         {
             Debug.Log(hit.collider.name);
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
+            if (!hit.collider.CompareTag("Enemy"))
+            {
+                Instantiate(defaultHitEffect, hit.point, Quaternion.identity);
+            }
+
+                IDamage dmg = hit.collider.GetComponent<IDamage>();
             if(dmg != null)
             {
                 dmg.takeDamage(shootDamage);
