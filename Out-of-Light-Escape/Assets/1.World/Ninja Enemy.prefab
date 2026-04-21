@@ -507,7 +507,7 @@ GameObject:
   - component: {fileID: 3656434090298800828}
   m_Layer: 6
   m_Name: Ninja Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
