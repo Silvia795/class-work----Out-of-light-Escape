@@ -23,9 +23,9 @@ public class SecurityCamera2 : MonoBehaviour
 
     void Update()
     {
-        if(playerDetected)
+        if (playerDetected)
         {
-            playerDetectTimer += Time.deltaTime;
+
         }
     }
 
@@ -59,19 +59,16 @@ IEnumerator RotateTo(float angle)
         cameraPivot.localRotation = targetRot;
     }
 
-    private void OnTriggerEnter(Collider other)
+
+    public void playerFound()
     {
-        if(other.CompareTag("Player"))
-        {
-            playerDetected = true;
-        }
+        playerDetected = true;
     }
 
-    private void OnTriggerExit(Collider other)
+
+    public void playerlost()
     {
-        if (other.CompareTag("Player"))
-        {
-            playerDetected =false;
-        }
+        playerDetected = false;
     }
+
 }
