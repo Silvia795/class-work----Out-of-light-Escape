@@ -10,11 +10,29 @@ public class SecurityCamera : MonoBehaviour
     [Range(10f, 30f)][SerializeField] float maxTime = 20f;
 
     Quaternion startRotation;
+
     void Start()
     {
         startRotation = transform.rotation;
         StartCoroutine(SwivelRoutine());
     }
+
+    void Update()
+    {
+        DetectPlayer();
+    }
+
+    void DetectPlayer()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, transform.forward, out hit, detectionRange, playerLayer))
+        {
+            Debug.Log("Player Caught!");
+            gamemanager.instance.PlayerCaught();
+        }
+    }
+
 
     IEnumerator SwivelRoutine()
     {
