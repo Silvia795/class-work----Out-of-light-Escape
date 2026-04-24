@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 72aa4c4116acef943835075c7f23409e, type: 3}
-  m_Name: Gun - Pistol
+  m_Name: Stun Gun
   m_EditorClassIdentifier: Assembly-CSharp::gunStats
-  gunModel: {fileID: 8880989838866829445, guid: eae1cfa98fca7d44c958aa806861fff7, type: 3}
+  gunModel: {fileID: 2773987499593610625, guid: 647882a4c84ac53428b0becf397c7976, type: 3}
   shootDamage: 1
-  shootDist: 75
+  shootDist: 45
   shootRate: 0.1
   ammoCur: 49
   ammoMax: 50

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 2837e6fec6be242619965030a3e19d82
+guid: 1361efc87c65ca244a706b87f1d7fce6
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -23,7 +23,6 @@ TextureImporter:
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
-  vTOnly: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -32,12 +31,12 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
-    aniso: 2
-    mipBias: 0
-    wrapU: 0
-    wrapV: 0
-    wrapW: 0
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: -1
+    wrapV: -1
+    wrapW: -1
   nPOTScale: 1
   lightmap: 0
   compressionQuality: 50
@@ -49,23 +48,20 @@ TextureImporter:
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
-  alphaUsage: 1
+  alphaUsage: 2
   alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 1
+  textureType: 0
   textureShape: 1
   singleChannelComponent: 0
-  flipbookRows: 1
-  flipbookColumns: 1
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
-  ignorePngGamma: 0
   applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 8192
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -77,19 +73,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
-    maxTextureSize: 8192
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 8192
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -101,19 +85,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Android
-    maxTextureSize: 8192
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Windows Store Apps
-    maxTextureSize: 8192
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -144,8 +116,8 @@ TextureImporter:
   assetBundleVariant: 
 AssetOrigin:
   serializedVersion: 1
-  productId: 207761
-  packageName: LowPoly - 3D Stylized Guns WW2 U.S.
+  productId: 227889
+  packageName: NZ PT-9M Pistol
   packageVersion: 1.0
-  assetPath: Assets/StylizedGuns - WW2 US/Textures/Woodenbox/RifleBox_low_uv_checker_material_uv_grid_2048x2048_Normal.png
-  uploadId: 465684
+  assetPath: Assets/NZ PT-9M Pistol/Textures/PT-9M Ammo/PT-9M 9mm Ammo_Detail.png
+  uploadId: 529303

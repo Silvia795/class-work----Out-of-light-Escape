@@ -416,6 +416,18 @@ PrefabInstance:
       propertyPath: m_CullingMask.m_Bits
       value: 383
       objectReference: {fileID: 0}
+    - target: {fileID: 6887559619410452732, guid: d9d9ed8e5baebdd419f4481e2247c144, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.766
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887559619410452732, guid: d9d9ed8e5baebdd419f4481e2247c144, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.292
+      objectReference: {fileID: 0}
+    - target: {fileID: 6887559619410452732, guid: d9d9ed8e5baebdd419f4481e2247c144, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.633
+      objectReference: {fileID: 0}
     - target: {fileID: 8742955449173364613, guid: d9d9ed8e5baebdd419f4481e2247c144, type: 3}
       propertyPath: m_Layer
       value: 7
@@ -672,6 +684,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1189791810
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 425946028946310483, guid: eae1cfa98fca7d44c958aa806861fff7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.23
+      objectReference: {fileID: 0}
+    - target: {fileID: 425946028946310483, guid: eae1cfa98fca7d44c958aa806861fff7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 425946028946310483, guid: eae1cfa98fca7d44c958aa806861fff7, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 425946028946310483, guid: eae1cfa98fca7d44c958aa806861fff7, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 425946028946310483, guid: eae1cfa98fca7d44c958aa806861fff7, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 425946028946310483, guid: eae1cfa98fca7d44c958aa806861fff7, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.00000046193594
+      objectReference: {fileID: 0}
+    - target: {fileID: 425946028946310483, guid: eae1cfa98fca7d44c958aa806861fff7, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 425946028946310483, guid: eae1cfa98fca7d44c958aa806861fff7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 425946028946310483, guid: eae1cfa98fca7d44c958aa806861fff7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 425946028946310483, guid: eae1cfa98fca7d44c958aa806861fff7, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1370410129180283101, guid: eae1cfa98fca7d44c958aa806861fff7, type: 3}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 11400000, guid: 63fedd17b8347754e8dd91f90be5b821, type: 2}
+    - target: {fileID: 3876845086620785100, guid: eae1cfa98fca7d44c958aa806861fff7, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: a131e90810c000f4cbd346c10046e38b, type: 2}
+    - target: {fileID: 4456497900064181263, guid: eae1cfa98fca7d44c958aa806861fff7, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 469455666734058937, guid: 975f39bd024bb824990302eff7e92d8f, type: 3}
+    - target: {fileID: 8880989838866829445, guid: eae1cfa98fca7d44c958aa806861fff7, type: 3}
+      propertyPath: m_Name
+      value: Stun Gun Idea
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: eae1cfa98fca7d44c958aa806861fff7, type: 3}
 --- !u!1 &1225643118 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1069674808455427570, guid: ce9ea52eeee99df418adda4628991797, type: 3}
@@ -8565,3 +8646,4 @@ SceneRoots:
   - {fileID: 3770556702373718519}
   - {fileID: 205425900}
   - {fileID: 2917009131526570861}
+  - {fileID: 1189791810}
