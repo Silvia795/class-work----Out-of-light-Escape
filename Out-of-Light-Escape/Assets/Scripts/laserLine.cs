@@ -1,48 +1,51 @@
 using UnityEngine;
+using System.Collections;
+using Unity.VisualScripting;
 
-public class LaserLine : MonoBehaviour
+public class laser : MonoBehaviour
 {
     [SerializeField] LineRenderer laserLine;
-    [SerializeField] BoxCollider boxCol;
-    [SerializeField] float length = 10f;
-    [SerializeField] float colliderThickness = 0.2f;
-    [SerializeField] LayerMask laserHitMask;
+    [SerializeField] GameObject hitEffect;
+    [SerializeField] Transform laserStartPos;
+    [SerializeField] int laserMaxDist;
+    [SerializeField] int damage;
+    [SerializeField] float damageRate;
+    bool isDamaging;
 
-    void Start()
-    {
-        laserLine.positionCount = 2;
-    }
 
+    // Update is called once per frame
     void Update()
     {
-        UpdateLaser();
+        createLaser();
     }
-
-    void UpdateLaser()
+    void createLaser()
     {
-        Vector3 startPos = transform.position;
-        Vector3 endPos;
-
         RaycastHit hit;
-
-        if (Physics.Raycast(startPos, transform.up, out hit, length, laserHitMask))
+        if (Physics.Raycast(laserStartPos.position, laserStartPos.forward, out hit, laserMaxDist))
         {
-            endPos = hit.point;
+            laserLine.SetPosition(0, laserStartPos.position);
+            laserLine.SetPosition(1, hit.point);
+            hitEffect.SetActive(true);
+            hitEffect.transform.position = hit.point;
+            IDamage dmg = hit.collider.GetComponent<IDamage>();
+            if (dmg != null)
+            {
+                StartCoroutine(damageTime(dmg));
+            }
         }
         else
         {
-            endPos = startPos + transform.up * length;
+            laserLine.SetPosition(0, laserStartPos.position);
+            laserLine.SetPosition(1, laserStartPos.position + laserStartPos.forward * laserMaxDist);
+            hitEffect.SetActive(false);
         }
 
-        laserLine.SetPosition(0, startPos);
-        laserLine.SetPosition(1, endPos);
-
-        float beamLength = Vector3.Distance(startPos, endPos);
-
-        boxCol.center = new Vector3(0, beamLength * 11 + 5, 0);
-        boxCol.size = new Vector3(colliderThickness, beamLength * 10, colliderThickness);
     }
-
+    IEnumerator damageTime(IDamage d)
+    {
+        isDamaging = true;
+        d.takeDamage(damage);
+        yield return new WaitForSeconds(damageRate);
+        isDamaging = false;
+    }
 }
-
-
