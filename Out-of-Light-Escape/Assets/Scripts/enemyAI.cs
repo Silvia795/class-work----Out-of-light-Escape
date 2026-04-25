@@ -205,6 +205,15 @@ void shoot()
         }
     }
 
+    public void applyStun()
+    {
+        if (!gameObject.activeInHierarchy)
+            return;
+
+        StopCoroutine(nameof(stun));
+        StartCoroutine(stun());
+    }
+
     IEnumerator flashRed()
     {
         model.material.color = Color.red;
