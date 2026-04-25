@@ -1,6 +1,8 @@
-using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class enemyAI : MonoBehaviour, IDamage
 {
@@ -29,6 +31,13 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("----- Roaming Stats -----")]
     [Range(1, 500)] [SerializeField] int roamDist;
     [Range(0, 10)] [SerializeField] int roamPauseTime;
+
+    [Header("----- Detection Stats -----")]
+ 
+    [SerializeField] float detectionAmount;
+    [SerializeField] float detectionBuildSpeed = 0.5f;
+    [SerializeField] float detectionLoseSpeed = 0.75f;
+    [SerializeField] bool playerDetected;
 
     Color colorOrig;
     float shootTimer;
@@ -59,16 +68,36 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if(playerInRange && !canSeePlayer())
+        if (isStunned)
+            return;
+
+        bool canDetectPlayer = playerInRange && canSeePlayer();
+
+        if (canDetectPlayer)
+            detectionAmount += detectionBuildSpeed * Time.deltaTime;
+        else
+            detectionAmount -= detectionLoseSpeed * Time.deltaTime;
+
+        detectionAmount = Mathf.Clamp01(detectionAmount);
+
+        if (detectionAmount > gamemanager.instance.currentDetection)
+        {
+            gamemanager.instance.updateDetectionMeter(detectionAmount);
+        }
+
+        playerDetected = detectionAmount >= 1f;
+
+        if (playerDetected)
+        {
+            
+        }
+        else
         {
             checkRoam();
         }
-        else if (!playerInRange)
-        {
-                checkRoam();
-        }
+    }
 
-        void checkRoam()
+    void checkRoam()
         {
              if(agent.remainingDistance < 0.01f)
              {
@@ -91,41 +120,44 @@ public class enemyAI : MonoBehaviour, IDamage
                 NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
                 agent.SetDestination(hit.position);
         }
-    }
+    
+bool canSeePlayer()
+{
+    playerDir = gamemanager.instance.player.transform.position - transform.position;
+    angleToPlayer = Vector3.Angle(playerDir, transform.forward);
 
-    bool canSeePlayer()
+    Debug.DrawRay(transform.position, playerDir);
+
+    RaycastHit hit;
+
+    if (Physics.Raycast(transform.position, playerDir, out hit))
     {
-        playerDir = gamemanager.instance.player.transform.position - transform.position;
-        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
-        Debug.DrawRay(transform.position, playerDir);
-        RaycastHit hit;
-        if(Physics.Raycast(transform.position, playerDir, out hit))
+        if (hit.collider.CompareTag("Player") && angleToPlayer <= FOV)
         {
-            if(hit.collider.CompareTag("Player") && angleToPlayer <= FOV)
-            {
-              
-                if (!isStunned)
-                {
-                    rotateToTarget();
-                    gunRotate();
+            rotateToTarget();
 
-                    if (shootTimer >= shootRate)
-                    {
-                        shoot();
-                    }
+            if (playerDetected && !isStunned)
+            {
+                gunRotate();
+
+                if (shootTimer >= shootRate)
+                {
+                    shoot();
                 }
+
                 agent.SetDestination(gamemanager.instance.player.transform.position);
                 shootTimer += Time.deltaTime;
-
                 agent.stoppingDistance = stoppingDistOrig;
-                return true;
             }
-            
+
+            return true;
         }
-        agent.stoppingDistance = 0;
-        return false;
     }
-    void shoot()
+
+    agent.stoppingDistance = 0;
+    return false;
+}
+void shoot()
     {
         shootTimer = 0;
         if (bullet != null)
@@ -156,6 +188,7 @@ public class enemyAI : MonoBehaviour, IDamage
             agent.stoppingDistance = 0;
         }
     }
+
     public void takeDamage(int amount)
     {
         HP -= amount;
