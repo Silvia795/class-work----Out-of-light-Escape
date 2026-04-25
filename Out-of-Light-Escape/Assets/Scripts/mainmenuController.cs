@@ -1,29 +1,23 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
-    [SerializeField] GameObject mainMenuRoot;
-    [SerializeField] GameObject gameRoot;
+    [SerializeField] string nextSceneName = "GameScene";
 
     void Start()
     {
-        mainMenuRoot.SetActive(true);
-        gameRoot.SetActive(false);
-
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
-
         Time.timeScale = 1f;
     }
 
     public void StartGame()
     {
         Debug.Log("START CLICKED");
-        mainMenuRoot.SetActive(false);
-        gameRoot.SetActive(true);
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(nextSceneName);
     }
 
     public void QuitGame()
