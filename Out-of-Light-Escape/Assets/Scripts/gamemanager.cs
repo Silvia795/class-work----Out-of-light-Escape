@@ -13,7 +13,10 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject reticle;
     [SerializeField] TMP_Text gameGoalCountText;
+    [SerializeField] Image detectBarLeft;
+    [SerializeField] Image detectBarRight;
     public Image playerHPBar;
+    public float currentDetection;
     public GameObject playerDamageFlash;
     public bool isPaused;
     public GameObject player;
@@ -46,6 +49,15 @@ public class gamemanager : MonoBehaviour
                 stateResume();
             }
         }
+    }
+
+    public void updateDetectionMeter(float amount)
+    {
+        amount = Mathf.Clamp01(amount);
+
+        currentDetection = amount;
+        detectBarLeft.fillAmount = amount;
+        detectBarRight.fillAmount = amount;
     }
 
     public void statePause()

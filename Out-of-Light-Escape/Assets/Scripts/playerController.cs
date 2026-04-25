@@ -87,6 +87,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup
 
     void shoot()
     {
+        Debug.Log("PLAYER SHOOT CALLED");
         shootTimer = 0;
         gunList[gunListPos].ammoCur--;
         RaycastHit hit;
