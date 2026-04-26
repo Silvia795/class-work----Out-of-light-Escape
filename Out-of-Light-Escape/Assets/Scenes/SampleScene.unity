@@ -4944,8 +4944,12 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2284639582193549269, guid: 0aa687309b9c05e4d89c6244e2178508, type: 3}
       propertyPath: m_Name
-      value: Stun Gun Idea
+      value: 'Stun Gun '
       objectReference: {fileID: 0}
+    - target: {fileID: 4430453324122567049, guid: 0aa687309b9c05e4d89c6244e2178508, type: 3}
+      propertyPath: gun
+      value: 
+      objectReference: {fileID: 11400000, guid: 0ea673b8a5033a34fa92f5e966cba3b5, type: 2}
     - target: {fileID: 7755873686903272008, guid: 0aa687309b9c05e4d89c6244e2178508, type: 3}
       propertyPath: m_LocalPosition.x
       value: -5.23
@@ -8518,3 +8522,4 @@ SceneRoots:
   - {fileID: 8682427040175471467}
   - {fileID: 742511170}
   - {fileID: 278924837}
+  - {fileID: 4122006982323621135}
