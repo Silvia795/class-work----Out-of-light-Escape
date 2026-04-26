@@ -1423,7 +1423,7 @@ MonoBehaviour:
   maxAngle: 60
   minTime: 10
   maxTime: 20
-  detectionTimer: 0
+  detectionTimer: 3
   cameraPivot: {fileID: 2760627422291759168}
 --- !u!1 &413829269134457046
 GameObject:
