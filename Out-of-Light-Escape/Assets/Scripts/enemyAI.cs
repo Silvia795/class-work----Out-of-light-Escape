@@ -12,16 +12,16 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform modelPivot;
     [SerializeField] float knockedDownY = -0.5f;
     [Header("----- Ability Stats -----")]
-    [Range(1, 1000)] [SerializeField] int HP;
-    [Range(1, 10)] [SerializeField] int targetFaceSpeed;
-    [Range(40, 80)] [SerializeField] int FOV;
-    
+    [Range(1, 1000)][SerializeField] int HP;
+    [Range(1, 10)][SerializeField] int targetFaceSpeed;
+    [Range(40, 80)][SerializeField] int FOV;
+
     [Header("----- Gun Stats -----")]
     [SerializeField] GameObject bullet;
-    [Range(0.1f, 10)] [SerializeField] float shootRate;
+    [Range(0.1f, 10)][SerializeField] float shootRate;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform gunPivot;
-    [Range(1, 10)] [SerializeField] int gunRotateSpeed;
+    [Range(1, 10)][SerializeField] int gunRotateSpeed;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] int stunTimer;
@@ -29,11 +29,11 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform particlePos;
 
     [Header("----- Roaming Stats -----")]
-    [Range(1, 500)] [SerializeField] int roamDist;
-    [Range(0, 10)] [SerializeField] int roamPauseTime;
+    [Range(1, 500)][SerializeField] int roamDist;
+    [Range(0, 10)][SerializeField] int roamPauseTime;
 
     [Header("----- Detection Stats -----")]
- 
+
     [SerializeField] float detectionAmount;
     [SerializeField] float detectionBuildSpeed = 0.5f;
     [SerializeField] float detectionLoseSpeed = 0.75f;
@@ -80,16 +80,13 @@ public class enemyAI : MonoBehaviour, IDamage
 
         detectionAmount = Mathf.Clamp01(detectionAmount);
 
-        if (detectionAmount > gamemanager.instance.currentDetection)
-        {
-            gamemanager.instance.updateDetectionMeter(detectionAmount);
-        }
+        gamemanager.instance.reportDetection(detectionAmount);
 
         playerDetected = detectionAmount >= 1f;
 
-        if (playerDetected)
+        if (playerDetected && canDetectPlayer)
         {
-            
+            AttackPlayer();
         }
         else
         {
@@ -98,66 +95,62 @@ public class enemyAI : MonoBehaviour, IDamage
     }
 
     void checkRoam()
-        {
-             if(agent.remainingDistance < 0.01f)
-             {
-                    roamTimer += Time.deltaTime;
-
-                    if (roamTimer >= roamPauseTime)
-                        roam();
-             }
-        }
-
-        void roam()
-        {
-                roamTimer = 0;
-                agent.stoppingDistance = 0;
-
-                Vector3 ranPos = Random.insideUnitSphere * roamDist;
-                ranPos += startingPos;
-
-                NavMeshHit hit;
-                NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
-                agent.SetDestination(hit.position);
-        }
-    
-bool canSeePlayer()
-{
-    playerDir = gamemanager.instance.player.transform.position - transform.position;
-    angleToPlayer = Vector3.Angle(playerDir, transform.forward);
-
-    Debug.DrawRay(transform.position, playerDir);
-
-    RaycastHit hit;
-
-    if (Physics.Raycast(transform.position, playerDir, out hit))
     {
-        if (hit.collider.CompareTag("Player") && angleToPlayer <= FOV)
+        if (agent.remainingDistance < 0.01f)
         {
-            rotateToTarget();
+            roamTimer += Time.deltaTime;
 
-            if (playerDetected && !isStunned)
-            {
-                gunRotate();
-
-                if (shootTimer >= shootRate)
-                {
-                    shoot();
-                }
-
-                agent.SetDestination(gamemanager.instance.player.transform.position);
-                shootTimer += Time.deltaTime;
-                agent.stoppingDistance = stoppingDistOrig;
-            }
-
-            return true;
+            if (roamTimer >= roamPauseTime)
+                roam();
         }
     }
 
-    agent.stoppingDistance = 0;
-    return false;
-}
-void shoot()
+    void roam()
+    {
+        roamTimer = 0;
+        agent.stoppingDistance = 0;
+
+        Vector3 ranPos = Random.insideUnitSphere * roamDist;
+        ranPos += startingPos;
+
+        NavMeshHit hit;
+        NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
+        agent.SetDestination(hit.position);
+    }
+
+    bool canSeePlayer()
+    {
+        playerDir = gamemanager.instance.player.transform.position - transform.position;
+        angleToPlayer = Vector3.Angle(playerDir, transform.forward);
+
+        if (angleToPlayer > FOV)
+            return false;
+
+        RaycastHit hit;
+
+        if (Physics.Raycast(transform.position, playerDir.normalized, out hit, playerDir.magnitude))
+        {
+            return hit.collider.CompareTag("Player");
+        }
+
+        return false;
+    }
+
+    void AttackPlayer()
+    {
+        rotateToTarget();
+        gunRotate();
+
+        agent.stoppingDistance = stoppingDistOrig;
+        agent.SetDestination(gamemanager.instance.player.transform.position);
+
+        shootTimer += Time.deltaTime;
+
+        if (shootTimer >= shootRate)
+            shoot();
+    }
+
+    void shoot()
     {
         shootTimer = 0;
         if (bullet != null)

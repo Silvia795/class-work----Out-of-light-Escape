@@ -22,6 +22,7 @@ public class gamemanager : MonoBehaviour
     public GameObject player;
     public playerController playerScript;
     float timeScaleOrig;
+    float detectionFrameMax;
     int gameGoalCount;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -51,13 +52,29 @@ public class gamemanager : MonoBehaviour
         }
     }
 
-    public void updateDetectionMeter(float amount)
+    void LateUpdate()
+    {
+        updateDetectionMeter(detectionFrameMax);
+        detectionFrameMax = 0f;
+    }
+
+    public void reportDetection(float amount)
     {
         amount = Mathf.Clamp01(amount);
 
+        if (amount > detectionFrameMax)
+            detectionFrameMax = amount;
+    }
+
+    void updateDetectionMeter(float amount)
+    {
         currentDetection = amount;
-        detectBarLeft.fillAmount = amount;
-        detectBarRight.fillAmount = amount;
+
+        if (detectBarLeft != null)
+            detectBarLeft.fillAmount = amount;
+
+        if (detectBarRight != null)
+            detectBarRight.fillAmount = amount;
     }
 
     public void statePause()
