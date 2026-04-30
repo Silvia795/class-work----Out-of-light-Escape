@@ -4,4 +4,7 @@ public interface IPickup
 {
     public void getGunStats(gunStats gun);
     public void getStunGunStats(stunStats gun);
+
+   
+
 }
