@@ -6,6 +6,7 @@ public class DoorSwitch : MonoBehaviour
     [SerializeField] VerticalDoor door;
     [SerializeField] KeyCode interactKey = KeyCode.E;
     [SerializeField] float openDuration = 3f;
+    [SerializeField] GameObject button;
 
     bool playerInRange;
     bool isRunning;
@@ -22,6 +23,7 @@ public class DoorSwitch : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
+            button.SetActive(true);
         }
     }
     IEnumerator AutoClose()
@@ -29,6 +31,7 @@ public class DoorSwitch : MonoBehaviour
         isRunning = true;
 
         door.ToggleDoor();
+        button.SetActive(false);
 
         yield return new WaitForSeconds(openDuration);
 
@@ -42,6 +45,7 @@ public class DoorSwitch : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
+            button.SetActive(false);
         }
     }
 }
