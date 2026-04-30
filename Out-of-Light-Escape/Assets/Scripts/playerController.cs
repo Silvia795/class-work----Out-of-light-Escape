@@ -46,7 +46,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup
     void Start()
     {
         HPOrig = HP;
-        spawnPlayer();
+        updatePlayerUI();
 
         if (stunWeapon != null)
         {
@@ -72,14 +72,6 @@ public class playerController : MonoBehaviour, IDamage, IPickup
         movement();
         sprint();
         rechargeStunGun();
-    }
-
-    public void spawnPlayer()
-    {
-        controller.transform.position = gamemanager.instance.playerSpawnPos.transform.position;
-        Physics.SyncTransforms();
-        HP = HPOrig;
-        updatePlayerUI();
     }
 
     void movement()
