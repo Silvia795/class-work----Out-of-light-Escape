@@ -73,7 +73,7 @@ public class cameraDetection : MonoBehaviour
 
     void UpdateDetectionUI()
     {
-        gamemanager.instance.updateDetectionMeter(detectionAmount);
+        gamemanager.instance.reportDetection(detectionAmount);
     }
     void ScanArea()
     {
