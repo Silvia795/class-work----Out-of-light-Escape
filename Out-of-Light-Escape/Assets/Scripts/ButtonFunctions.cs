@@ -1,3 +1,4 @@
+using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,5 +23,11 @@ public class ButtonFunctions : MonoBehaviour
 #else
 Application.Quit();
 #endif
+    }
+
+    public void playerRespawn()
+    {
+        gamemanager.instance.playerScript.spawnPlayer();
+        gamemanager.instance.stateResume();
     }
 }
