@@ -1,4 +1,3 @@
-using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -30,4 +29,17 @@ Application.Quit();
         gamemanager.instance.playerScript.spawnPlayer();
         gamemanager.instance.stateResume();
     }
+
+    public void loadLevel(int level)
+    {
+
+        if (gamemanager.instance != null)
+        {
+            gamemanager.instance.stateResume();
+        }
+
+        SceneManager.LoadScene(level);
+
+    }
+
 }

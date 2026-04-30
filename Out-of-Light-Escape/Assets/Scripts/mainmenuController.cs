@@ -12,12 +12,20 @@ public class MainMenuController : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void StartGame()
-    {
-        Debug.Log("START CLICKED");
+    //public void StartGame()
+    //{
+    //    Debug.Log("START CLICKED");
 
-        Time.timeScale = 1f;
-        SceneManager.LoadScene(nextSceneName);
+    //    Time.timeScale = 1f;
+    //    SceneManager.LoadScene(nextSceneName);
+    //}
+
+    public void loadLevel(int level)
+    {
+        gamemanager.instance.stateResume();
+
+        SceneManager.LoadScene(level);
+
     }
 
     public void QuitGame()
