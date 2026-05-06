@@ -38,6 +38,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] float detectionBuildSpeed = 0.5f;
     [SerializeField] float detectionLoseSpeed = 0.75f;
     [SerializeField] bool playerDetected;
+    [SerializeField] float rangeMod;
 
     Color colorOrig;
     float shootTimer;
@@ -47,6 +48,8 @@ public class enemyAI : MonoBehaviour, IDamage
 
     bool playerInRange;
     bool isStunned;
+
+   int playerSeen = 1;
 
     Vector3 playerDir;
     Vector3 startingPos;
@@ -87,9 +90,18 @@ public class enemyAI : MonoBehaviour, IDamage
         if (playerDetected && canDetectPlayer)
         {
             AttackPlayer();
+            if(playerSeen == 1)
+            {
+                playerSeen = 2;
+            }
         }
         else
         {
+            if(playerSeen == 2 && detectionAmount <= 0)
+            {
+                playerSeen = 3;
+                gamemanager.instance.increaseAllDetectionRange();
+            }
             checkRoam();
         }
     }
@@ -240,5 +252,12 @@ public class enemyAI : MonoBehaviour, IDamage
         agent.isStopped = false;
             isStunned = false;
       
+    }
+
+
+    public void increaseDetection()
+    {
+        SphereCollider detectionRange = GetComponent<SphereCollider>();
+        detectionRange.radius += rangeMod;
     }
 }

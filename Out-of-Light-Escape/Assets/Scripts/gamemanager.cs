@@ -23,6 +23,7 @@ public class gamemanager : MonoBehaviour
     public playerController playerScript;
     public GameObject playerSpawnPos;
 
+
     float timeScaleOrig;
     float detectionFrameMax;
     int gameGoalCount;
@@ -117,4 +118,14 @@ public class gamemanager : MonoBehaviour
         gameGoalCountText.text = gameGoalCount.ToString("F0");
     }
 
+    public void increaseAllDetectionRange()
+    {
+        enemyAI[] enemies = FindObjectsOfType<enemyAI>();
+        int i = 0;
+        while(enemies[i] != null)
+        {
+            i++;
+            enemies[i].increaseDetection();
+        }
+    }
 }

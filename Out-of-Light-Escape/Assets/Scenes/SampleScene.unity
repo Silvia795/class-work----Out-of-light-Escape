@@ -6702,6 +6702,10 @@ PrefabInstance:
       value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 6104162950465821948, guid: 268866a6258610f4f91c453f5a1ee534, type: 3}
+      propertyPath: rangeMod
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6104162950465821948, guid: 268866a6258610f4f91c453f5a1ee534, type: 3}
       propertyPath: roamDist
       value: 40
       objectReference: {fileID: 0}
