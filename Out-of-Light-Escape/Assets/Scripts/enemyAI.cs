@@ -259,5 +259,6 @@ public class enemyAI : MonoBehaviour, IDamage
     {
         SphereCollider detectionRange = GetComponent<SphereCollider>();
         detectionRange.radius += rangeMod;
+        playerSeen = 3;
     }
 }
