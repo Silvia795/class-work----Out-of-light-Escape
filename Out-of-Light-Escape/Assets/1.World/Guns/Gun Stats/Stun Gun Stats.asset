@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 358c8ec7122015d4a9a6d860c0cf5c4b, type: 3}
+  m_Name: Stun Gun Stats
+  m_EditorClassIdentifier: Assembly-CSharp::stunStats
+  gunModel: {fileID: 2284639582193549269, guid: 0aa687309b9c05e4d89c6244e2178508, type: 3}
+  shootDist: 50
+  shootRate: 0.1
+  chargeCur: 4
+  chargeMax: 5
+  chargeUse: 1
+  chargeFillAmount: 1
+  chargeFillDelay: 1
+  hitEffect: {fileID: 4655695154255949797, guid: be1a80b3138fcc5468941797d84486ab, type: 3}

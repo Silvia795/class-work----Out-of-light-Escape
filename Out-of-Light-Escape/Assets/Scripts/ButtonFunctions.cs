@@ -23,4 +23,23 @@ public class ButtonFunctions : MonoBehaviour
 Application.Quit();
 #endif
     }
+
+    public void playerRespawn()
+    {
+        gamemanager.instance.playerScript.spawnPlayer();
+        gamemanager.instance.stateResume();
+    }
+
+    public void loadLevel(int level)
+    {
+
+        if (gamemanager.instance != null)
+        {
+            gamemanager.instance.stateResume();
+        }
+
+        SceneManager.LoadScene(level);
+
+    }
+
 }

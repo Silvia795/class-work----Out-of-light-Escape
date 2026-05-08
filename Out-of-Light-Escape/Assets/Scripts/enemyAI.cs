@@ -1,6 +1,8 @@
-using UnityEngine;
 using System.Collections;
+using Unity.VisualScripting;
+using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UIElements;
 
 public class enemyAI : MonoBehaviour, IDamage
 {
@@ -10,16 +12,16 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform modelPivot;
     [SerializeField] float knockedDownY = -0.5f;
     [Header("----- Ability Stats -----")]
-    [Range(1, 1000)] [SerializeField] int HP;
-    [Range(1, 10)] [SerializeField] int targetFaceSpeed;
-    [Range(40, 80)] [SerializeField] int FOV;
-    
+    [Range(1, 1000)][SerializeField] int HP;
+    [Range(1, 10)][SerializeField] int targetFaceSpeed;
+    [Range(40, 80)][SerializeField] int FOV;
+
     [Header("----- Gun Stats -----")]
     [SerializeField] GameObject bullet;
-    [Range(0.1f, 10)] [SerializeField] float shootRate;
+    [Range(0.1f, 10)][SerializeField] float shootRate;
     [SerializeField] Transform shootPos;
     [SerializeField] Transform gunPivot;
-    [Range(1, 10)] [SerializeField] int gunRotateSpeed;
+    [Range(1, 10)][SerializeField] int gunRotateSpeed;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] int stunTimer;
@@ -27,8 +29,15 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform particlePos;
 
     [Header("----- Roaming Stats -----")]
-    [Range(1, 500)] [SerializeField] int roamDist;
-    [Range(0, 10)] [SerializeField] int roamPauseTime;
+    [Range(1, 500)][SerializeField] int roamDist;
+    [Range(0, 10)][SerializeField] int roamPauseTime;
+
+    [Header("----- Detection Stats -----")]
+
+    [SerializeField] float detectionAmount;
+    [SerializeField] float detectionBuildSpeed = 0.5f;
+    [SerializeField] float detectionLoseSpeed = 0.75f;
+    [SerializeField] bool playerDetected;
 
     Color colorOrig;
     float shootTimer;
@@ -59,72 +68,88 @@ public class enemyAI : MonoBehaviour, IDamage
     // Update is called once per frame
     void Update()
     {
-        if(playerInRange && !canSeePlayer())
+        if (isStunned)
+            return;
+
+        bool canDetectPlayer = playerInRange && canSeePlayer();
+
+        if (canDetectPlayer)
+            detectionAmount += detectionBuildSpeed * Time.deltaTime;
+        else
+            detectionAmount -= detectionLoseSpeed * Time.deltaTime;
+
+        detectionAmount = Mathf.Clamp01(detectionAmount);
+
+        gamemanager.instance.reportDetection(detectionAmount);
+
+        playerDetected = detectionAmount >= 1f;
+
+        if (playerDetected && canDetectPlayer)
+        {
+            AttackPlayer();
+        }
+        else
         {
             checkRoam();
         }
-        else if (!playerInRange)
+    }
+
+    void checkRoam()
+    {
+        if (agent.remainingDistance < 0.01f)
         {
-                checkRoam();
+            roamTimer += Time.deltaTime;
+
+            if (roamTimer >= roamPauseTime)
+                roam();
         }
+    }
 
-        void checkRoam()
-        {
-             if(agent.remainingDistance < 0.01f)
-             {
-                    roamTimer += Time.deltaTime;
+    void roam()
+    {
+        roamTimer = 0;
+        agent.stoppingDistance = 0;
 
-                    if (roamTimer >= roamPauseTime)
-                        roam();
-             }
-        }
+        Vector3 ranPos = Random.insideUnitSphere * roamDist;
+        ranPos += startingPos;
 
-        void roam()
-        {
-                roamTimer = 0;
-                agent.stoppingDistance = 0;
-
-                Vector3 ranPos = Random.insideUnitSphere * roamDist;
-                ranPos += startingPos;
-
-                NavMeshHit hit;
-                NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
-                agent.SetDestination(hit.position);
-        }
+        NavMeshHit hit;
+        NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
+        agent.SetDestination(hit.position);
     }
 
     bool canSeePlayer()
     {
         playerDir = gamemanager.instance.player.transform.position - transform.position;
         angleToPlayer = Vector3.Angle(playerDir, transform.forward);
-        Debug.DrawRay(transform.position, playerDir);
+
+        if (angleToPlayer > FOV)
+            return false;
+
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, playerDir, out hit))
+
+        if (Physics.Raycast(transform.position, playerDir.normalized, out hit, playerDir.magnitude))
         {
-            if(hit.collider.CompareTag("Player") && angleToPlayer <= FOV)
-            {
-              
-                if (!isStunned)
-                {
-                    rotateToTarget();
-                    gunRotate();
-
-                    if (shootTimer >= shootRate)
-                    {
-                        shoot();
-                    }
-                }
-                agent.SetDestination(gamemanager.instance.player.transform.position);
-                shootTimer += Time.deltaTime;
-
-                agent.stoppingDistance = stoppingDistOrig;
-                return true;
-            }
-            
+            return hit.collider.CompareTag("Player");
         }
-        agent.stoppingDistance = 0;
+
         return false;
     }
+
+    void AttackPlayer()
+    {
+        rotateToTarget();
+        gunRotate();
+
+        agent.stoppingDistance = stoppingDistOrig;
+        agent.SetDestination(gamemanager.instance.player.transform.position);
+
+        shootTimer += Time.deltaTime;
+
+        if (shootTimer >= shootRate)
+            shoot();
+    }
+
     void shoot()
     {
         shootTimer = 0;
@@ -156,6 +181,7 @@ public class enemyAI : MonoBehaviour, IDamage
             agent.stoppingDistance = 0;
         }
     }
+
     public void takeDamage(int amount)
     {
         HP -= amount;
@@ -170,6 +196,15 @@ public class enemyAI : MonoBehaviour, IDamage
             StartCoroutine(flashRed());
             StartCoroutine(stun());
         }
+    }
+
+    public void applyStun()
+    {
+        if (!gameObject.activeInHierarchy)
+            return;
+
+        StopCoroutine(nameof(stun));
+        StartCoroutine(stun());
     }
 
     IEnumerator flashRed()

@@ -13,12 +13,18 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject reticle;
     [SerializeField] TMP_Text gameGoalCountText;
+    [SerializeField] Image detectBarLeft;
+    [SerializeField] Image detectBarRight;
     public Image playerHPBar;
+    public float currentDetection;
     public GameObject playerDamageFlash;
     public bool isPaused;
     public GameObject player;
     public playerController playerScript;
+    public GameObject playerSpawnPos;
+
     float timeScaleOrig;
+    float detectionFrameMax;
     int gameGoalCount;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -28,6 +34,8 @@ public class gamemanager : MonoBehaviour
         timeScaleOrig = Time.timeScale;
         player = GameObject.FindWithTag("Player");
         playerScript = player.GetComponent<playerController>();
+
+        playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
     }
 
     // Update is called once per frame
@@ -46,6 +54,31 @@ public class gamemanager : MonoBehaviour
                 stateResume();
             }
         }
+    }
+
+    void LateUpdate()
+    {
+        updateDetectionMeter(detectionFrameMax);
+        detectionFrameMax = 0f;
+    }
+
+    public void reportDetection(float amount)
+    {
+        amount = Mathf.Clamp01(amount);
+
+        if (amount > detectionFrameMax)
+            detectionFrameMax = amount;
+    }
+
+    void updateDetectionMeter(float amount)
+    {
+        currentDetection = amount;
+
+        if (detectBarLeft != null)
+            detectBarLeft.fillAmount = amount;
+
+        if (detectBarRight != null)
+            detectBarRight.fillAmount = amount;
     }
 
     public void statePause()

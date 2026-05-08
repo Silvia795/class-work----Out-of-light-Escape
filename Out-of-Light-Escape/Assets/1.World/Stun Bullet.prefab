@@ -9,12 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5691134177846420948}
+  - component: {fileID: -8982770864644425942}
   - component: {fileID: 7092015196615988515}
   - component: {fileID: 2222276055319702023}
   - component: {fileID: 7766638853643774580}
   - component: {fileID: 8411713660760283715}
   - component: {fileID: 8334916757059562026}
-  - component: {fileID: -8982770864644425942}
   m_Layer: 0
   m_Name: Stun Bullet
   m_TagString: Untagged
@@ -37,6 +37,25 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8982770864644425942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3552667912173612551}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc3fd30df14428c4e9b4d0e4d37ea736, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::damage
+  type: 0
+  rb: {fileID: 8411713660760283715}
+  damageAmount: 3
+  damageRate: 0
+  bulletSpeed: 40
+  bulletDestroyTime: 1
+  hitEffect: {fileID: 5894327660429377950, guid: 6980a48c33c2d8b43a79e66f73db77dd, type: 3}
 --- !u!33 &7092015196615988515
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -252,22 +271,3 @@ TrailRenderer:
   m_Autodestruct: 1
   m_Emitting: 1
   m_ApplyActiveColorSpace: 1
---- !u!114 &-8982770864644425942
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3552667912173612551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc3fd30df14428c4e9b4d0e4d37ea736, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::damage
-  type: 0
-  rb: {fileID: 8411713660760283715}
-  damageAmount: 1
-  damageRate: 0
-  bulletSpeed: 40
-  bulletDestroyTime: 1
-  hitEffect: {fileID: 5894327660429377950, guid: 6980a48c33c2d8b43a79e66f73db77dd, type: 3}
