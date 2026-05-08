@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 358c8ec7122015d4a9a6d860c0cf5c4b, type: 3}
   m_Name: Stun Gun Stats
   m_EditorClassIdentifier: Assembly-CSharp::stunStats
-  gunModel: {fileID: 2284639582193549269, guid: 0aa687309b9c05e4d89c6244e2178508, type: 3}
+  gunModel: {fileID: -8391222552659086748, guid: b41f6cfd8954405429dfae6312dce68b, type: 3}
   shootDist: 50
   shootRate: 0.1
-  chargeCur: 4
+  chargeCur: 2
   chargeMax: 5
   chargeUse: 1
   chargeFillAmount: 1
