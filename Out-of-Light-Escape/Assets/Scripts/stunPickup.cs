@@ -10,7 +10,6 @@ public class stunPickup : MonoBehaviour
 
         if (pick != null)
         {
-            gun.chargeCur = gun.chargeMax;
             pick.getStunGunStats(gun);
             Destroy(gameObject);
         }

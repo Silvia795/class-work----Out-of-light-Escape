@@ -15,6 +15,10 @@ public class gamemanager : MonoBehaviour
     [SerializeField] TMP_Text gameGoalCountText;
     [SerializeField] Image detectBarLeft;
     [SerializeField] Image detectBarRight;
+
+    [SerializeField] TMP_Text chargeText;
+
+
     public Image playerHPBar;
     public float currentDetection;
     public GameObject playerDamageFlash;
@@ -28,6 +32,8 @@ public class gamemanager : MonoBehaviour
     float detectionFrameMax;
     int gameGoalCount;
 
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
@@ -37,6 +43,8 @@ public class gamemanager : MonoBehaviour
         playerScript = player.GetComponent<playerController>();
 
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
+
+
     }
 
     // Update is called once per frame
@@ -128,4 +136,12 @@ public class gamemanager : MonoBehaviour
             enemies[i].increaseDetection();
         }
     }
+
+    public void UpdateAmmoUI(int currentAmmo, int maxAmmo)
+    {
+        if(chargeText != null)
+            chargeText.text = $"{currentAmmo} / {maxAmmo}";
+    }
+
+
 }

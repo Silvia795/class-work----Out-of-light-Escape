@@ -14,10 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::stunStats
   gunModel: {fileID: -8391222552659086748, guid: b41f6cfd8954405429dfae6312dce68b, type: 3}
   shootDist: 50
-  shootRate: 0.1
-  chargeCur: 2
-  chargeMax: 5
-  chargeUse: 1
-  chargeFillAmount: 1
-  chargeFillDelay: 1
+  shootRate: 0.7
+  startingCharges: 3
+  chargesMax: 5
+  chargesReserve: 20
+  reloadLength: 0.5
   hitEffect: {fileID: 4655695154255949797, guid: be1a80b3138fcc5468941797d84486ab, type: 3}
