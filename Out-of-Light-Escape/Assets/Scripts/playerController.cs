@@ -26,7 +26,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup
     [SerializeField] stunStats stunWeapon;
     [SerializeField] bool hasStunGun;
     [SerializeField] bool usingStunGun;
-    [Range(5,15)][SerializeField] int maxCharges;
+    [Range(5, 50)][SerializeField] public int maxReserve;
 
     [Header("---- Hit Effects ----")]
     [SerializeField] ParticleSystem defaultHitEffect;
@@ -205,6 +205,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup
                 enemy.applyStun();
             }
         }
+        gamemanager.instance.UpdateAmmoUI(chargesCurr, chargesMax, chargesReserve);
     }
 
     IEnumerator ReloadStunGun()
@@ -222,6 +223,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup
         chargesReserve -= toReload;
 
         isReloading = false;
+        gamemanager.instance.UpdateAmmoUI(chargesCurr, chargesMax, chargesReserve);
     }
 
     public void takeDamage(int amount)
@@ -250,7 +252,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup
         gunList.Add(gun);
         gunListPos = gunList.Count - 1;
         changeGun();
-
+        gamemanager.instance.UpdateAmmoUI(chargesCurr, chargesMax, chargesReserve);
     }
 
     public void getStunGunStats(stunStats gun)
@@ -267,6 +269,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup
 
        Debug.Log("stunShootTimer set to: " + stunShootTimer);
         changeGun();
+        gamemanager.instance.UpdateAmmoUI(chargesCurr, chargesMax, chargesReserve);
     }
     void changeGun()
     {

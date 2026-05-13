@@ -137,10 +137,10 @@ public class gamemanager : MonoBehaviour
         }
     }
 
-    public void UpdateAmmoUI(int currentAmmo, int maxAmmo)
+    public void UpdateAmmoUI(int currentAmmo, int maxAmmo, int ammoReserve)
     {
         if(chargeText != null)
-            chargeText.text = $"{currentAmmo} / {maxAmmo}";
+            chargeText.text = $"{currentAmmo} / {maxAmmo}   :   {ammoReserve}";
     }
 
 

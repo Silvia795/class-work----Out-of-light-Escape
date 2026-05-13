@@ -17,6 +17,6 @@ MonoBehaviour:
   shootRate: 0.7
   startingCharges: 3
   chargesMax: 5
-  chargesReserve: 20
+  chargesReserve: 3
   reloadLength: 0.5
   hitEffect: {fileID: 4655695154255949797, guid: be1a80b3138fcc5468941797d84486ab, type: 3}
