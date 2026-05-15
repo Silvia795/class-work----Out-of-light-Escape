@@ -5,6 +5,10 @@ public class ButtonFunctions : MonoBehaviour
 {
 
     [SerializeField] GameObject gameRoot;
+
+    [Header("Scene Names")]
+    [SerializeField] string mainMenuScene = "MainScene";
+
     public void resume()
     {
         gamemanager.instance.stateResume();
@@ -40,6 +44,25 @@ Application.Quit();
 
         SceneManager.LoadScene(level);
 
+    }
+    public void loadMainMenu()
+    {
+        if (gamemanager.instance != null)
+        {
+            gamemanager.instance.stateResume();
+        }
+
+        SceneManager.LoadScene(mainMenuScene);
+    }
+
+    public void openSettingsMenu()
+    {
+        gamemanager.instance.openSettingsMenu();
+    }
+
+    public void backToPauseMenu()
+    {
+        gamemanager.instance.backToPauseMenu();
     }
 
 }
