@@ -42,4 +42,14 @@ Application.Quit();
 
     }
 
+    public void openSettingsMenu()
+    {
+        gamemanager.instance.openSettingsMenu();
+    }
+
+    public void backToPauseMenu()
+    {
+        gamemanager.instance.backToPauseMenu();
+    }
+
 }

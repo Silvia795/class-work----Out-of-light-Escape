@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class cameraController : MonoBehaviour
 {
-    [SerializeField] int sensitivity;
     [SerializeField] int lockVertMin, lockVertMax;
     [SerializeField] bool invertY;
     [SerializeField] Transform player;
+
+    public float sensitivity = 300f;
 
     float camRotX;
 
