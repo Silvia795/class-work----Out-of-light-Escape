@@ -217,7 +217,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup
         yield return new WaitForSeconds(reloadLength);
 
         int needed = chargesMax - chargesCurr;
-        int toReload = Mathf.Min(needed, stunWeapon.chargesReserve);
+        int toReload = Mathf.Min(needed, chargesReserve);
 
         chargesCurr += toReload;
         chargesReserve -= toReload;
@@ -305,5 +305,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup
             gunListPos--;
             changeGun();
         }
+    }
+
+    public bool playerHasStunGun()
+    {
+        if(hasStunGun)
+        {
+            return true;
+        }
+        return false;
     }
 }

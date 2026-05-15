@@ -12,7 +12,7 @@ public class AmmoPickup : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerController player = other.GetComponent<playerController>();
-            if (player != null)
+            if (player != null && player.playerHasStunGun() && player.chargesReserve != player.chargesMax)
             {
                 player.chargesReserve += restoreAmount;
 
@@ -21,11 +21,8 @@ public class AmmoPickup : MonoBehaviour
                     player.chargesReserve = player.maxReserve;
                 }
                 gamemanager.instance.UpdateAmmoUI(player.chargesCurr, player.chargesMax, player.chargesReserve);
+                Destroy(gameObject);
             }
-            Destroy(gameObject);
         }
-
-
     }
-
 }
