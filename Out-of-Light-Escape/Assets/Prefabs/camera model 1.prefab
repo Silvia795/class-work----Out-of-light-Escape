@@ -383,7 +383,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2781756147581725247}
-  - component: {fileID: 237313302003782417}
   - component: {fileID: 3080683413505180043}
   - component: {fileID: 6098729099797227987}
   - component: {fileID: 7702774995874542466}
@@ -410,21 +409,6 @@ Transform:
   - {fileID: 8691756735306526401}
   m_Father: {fileID: 1892277408685818085}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &237313302003782417
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4309260938179390395}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb1fb24624cc7f94b81335447a1a02fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SecurityCamera
-  maxAngle: 75
-  minTime: 20
-  maxTime: 35
 --- !u!33 &3080683413505180043
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -744,6 +728,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8691756735306526401}
+  - component: {fileID: 703296450392819330}
   - component: {fileID: 4048326792008183696}
   - component: {fileID: 3913902279571174031}
   - component: {fileID: 4598939986967083848}
@@ -771,6 +756,28 @@ Transform:
   - {fileID: 7577935530943810222}
   m_Father: {fileID: 2781756147581725247}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &703296450392819330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8754286934692858264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46bb7c98147a8f944b04d1985f1d9aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::cameraDetection
+  cameraHead: {fileID: 8691756735306526401}
+  player: {fileID: 0}
+  viewMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  scanSpeed: 0.3
+  scanAngle: 60
+  rotateSpeed: 5
+  detectionSpeed: 0.25
+  loseSpeed: 0.5
 --- !u!33 &4048326792008183696
 MeshFilter:
   m_ObjectHideFlags: 0
