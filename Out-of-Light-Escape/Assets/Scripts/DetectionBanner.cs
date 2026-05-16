@@ -86,32 +86,32 @@ public class DetectionBanner : MonoBehaviour
             StopFlash(ref enemySuspectedFlash, enemySuspectedBanner);
         }
 
-        //// ENEMY DETECTED CHECK
-        //bool enemyDetected = false;
+        // ENEMY DETECTED CHECK
+        bool enemyDetected = false;
 
-        //foreach (GameObject enemy in enemies)
-        //{
-        //    enemyAI ai = enemy.GetComponent<enemyAI>();
+        foreach (GameObject enemy in enemies)
+        {
+            enemyAI ai = enemy.GetComponent<enemyAI>();
 
-        //    if (ai != null && ai.detectionAmount >= 1f)
-        //    {
-        //        enemyDetected = true;
-        //        break;
-        //    }
-        //}
+            if (ai != null && ai.detectionAmount >= 1f)
+            {
+                enemyDetected = true;
+                break;
+            }
+        }
 
-        //if (enemyDetected)
-        //{
-        //    if (!enemyDetectedBanner.activeSelf)
-        //    {
-        //        enemyDetectedBanner.SetActive(true);
-        //        enemyDetectedFlash = StartCoroutine(FlashBanner(enemyDetectedBanner, 0.4f));
-        //    }
-        //}
-        //else
-        //{
-        //    StopFlash(ref enemyDetectedFlash, enemyDetectedBanner);
-        //}
+        if (enemyDetected)
+        {
+            if (!enemyDetectedBanner.activeSelf)
+            {
+                enemyDetectedBanner.SetActive(true);
+                enemyDetectedFlash = StartCoroutine(FlashBanner(enemyDetectedBanner, 0.4f));
+            }
+        }
+        else
+        {
+            StopFlash(ref enemyDetectedFlash, enemyDetectedBanner);
+        }
     }
 
     IEnumerator FlashBanner(GameObject banner, float speed)
