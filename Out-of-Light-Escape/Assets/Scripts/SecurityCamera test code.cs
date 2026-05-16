@@ -17,22 +17,22 @@ public class SecurityCamera : MonoBehaviour
         StartCoroutine(SwivelRoutine());
     }
 
-    void Update()
-    {
-        DetectPlayer();
-    }
+    //void Update()
+    //{
+    //    DetectPlayer();
+   // }
 
-    void DetectPlayer()
-    {
-        RaycastHit hit;
+    //void DetectPlayer()
+    //{
+       // RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, transform.forward, out hit, detectionRange, playerLayer))
-        {
-            Debug.Log("Player Caught!");
-            gamemanager.instance.PlayerCaught();
-        }
-    }
-
+       // if (Physics.Raycast(transform.position, transform.forward, out hit, detectionRange, playerLayer))
+       // {
+          //  Debug.Log("Player Caught!");
+           // gamemanager.instance.PlayerCaught();
+        //}
+    //}
+//
 
     IEnumerator SwivelRoutine()
     {
