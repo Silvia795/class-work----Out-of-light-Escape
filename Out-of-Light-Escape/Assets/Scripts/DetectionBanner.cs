@@ -6,8 +6,10 @@ public class DetectionBanner : MonoBehaviour
     public GameObject suspectedBanner;
     public GameObject detectedBanner;
     public GameObject enemySuspectedBanner;
-    public GameObject enemyDetectedBanner;
+    public GameObject enemyDetectedBanner; 
+    public GameObject checkpointBanner;
 
+    private Coroutine checkpointFlash;
     private Coroutine suspectedFlash;
     private Coroutine detectedFlash;
     private Coroutine enemySuspectedFlash;
@@ -162,6 +164,20 @@ public class DetectionBanner : MonoBehaviour
         }
     }
 
+    public void ShowCheckpointBanner()
+    {
+        StartCoroutine(CheckpointBannerRoutine());
+    }
 
+    IEnumerator CheckpointBannerRoutine()
+    {
+        checkpointBanner.SetActive(true);
+
+        checkpointFlash = StartCoroutine(FlashBanner(checkpointBanner, 0.8f));
+
+        yield return new WaitForSeconds(3f);
+
+        StopFlash(ref checkpointFlash, checkpointBanner);
+    }
 
 }

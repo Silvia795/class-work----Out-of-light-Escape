@@ -40,6 +40,8 @@ public class checkpoint : MonoBehaviour
 
         currentCheckpoint = this;
 
+        FindFirstObjectByType<DetectionBanner>().ShowCheckpointBanner();
+
         gamemanager.instance.playerSpawnPos.transform.position = transform.position;
 
         TurnIdleOff();
