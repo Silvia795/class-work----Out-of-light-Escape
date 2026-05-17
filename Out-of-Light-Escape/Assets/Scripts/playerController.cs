@@ -229,6 +229,21 @@ public class playerController : MonoBehaviour, IDamage, IPickup
             gamemanager.instance.playerDeath();
         }
     }
+
+    public void Heal (int amount)
+    {
+        HP += amount;
+
+        if(HP > HPOrig)
+        {
+            HP = HPOrig;
+        }
+
+        updatePlayerUI();
+
+        Debug.Log("Player healed. Current HP: " + HP);
+    }
+
     public void updatePlayerUI()
     {
         gamemanager.instance.playerHPBar.fillAmount = (float)HP / HPOrig;
