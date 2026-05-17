@@ -12175,11 +12175,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3384433026654711817, guid: c99a2590f2595214eae7cb4fd18e4097, type: 3}
       propertyPath: m_LocalScale.z
-      value: 13.749337
+      value: 13.999576
       objectReference: {fileID: 0}
     - target: {fileID: 3384433026654711817, guid: c99a2590f2595214eae7cb4fd18e4097, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -79.64147
+      value: -79.51647
       objectReference: {fileID: 0}
     - target: {fileID: 3384433026654711817, guid: c99a2590f2595214eae7cb4fd18e4097, type: 3}
       propertyPath: m_LocalPosition.y
@@ -12946,7 +12946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7192555742193806504, guid: e83f9ab2f7f683c43a9a39d419496850, type: 3}
       propertyPath: m_Name
-      value: Checkpoint Sign (3)
+      value: Exit Sign
       objectReference: {fileID: 0}
     - target: {fileID: 8608490220263949240, guid: e83f9ab2f7f683c43a9a39d419496850, type: 3}
       propertyPath: m_Pivot.x
@@ -15787,9 +15787,6 @@ PrefabInstance:
     - target: {fileID: 907384811650935024, guid: fc47533bf226f10479d7e3013347b699, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.968431
-      objectReference: {fileID: 0}
-      propertyPath: m_LocalPosition.y
-      value: 1.0099998
       objectReference: {fileID: 0}
     - target: {fileID: 907384811650935024, guid: fc47533bf226f10479d7e3013347b699, type: 3}
       propertyPath: m_LocalPosition.z
