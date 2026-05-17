@@ -111,64 +111,6 @@ public class DetectionBanner : MonoBehaviour
         {
             StopFlash(ref enemyDetectedFlash, enemyDetectedBanner);
         }
-
-
-
-        //// ENEMY SUSPECTED STATE
-        //bool enemySuspected = false;
-
-        //GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        //foreach (GameObject enemy in enemies)
-        //{
-        //    enemyAI ai = enemy.GetComponent<enemyAI>();
-
-        //    if (ai != null && ai.detectionAmount >= 0.5f)
-        //    {
-        //        enemySuspected = true;
-        //        break;
-        //    }
-        //}
-
-        //if (enemySuspected)
-        //{
-        //    if (!enemySuspectedBanner.activeSelf)
-        //    {
-        //        enemySuspectedBanner.SetActive(true);
-        //        enemySuspectedFlash = StartCoroutine(FlashBanner(enemySuspectedBanner, 0.8f));
-        //    }
-        //}
-        //else
-        //{
-        //    StopFlash(ref enemySuspectedFlash, enemySuspectedBanner);
-        //}
-
-        //// ENEMY DETECTED CHECK
-        //bool enemyDetected = false;
-
-        //foreach (GameObject enemy in enemies)
-        //{
-        //    enemyAI ai = enemy.GetComponent<enemyAI>();
-
-        //    if (ai != null && ai.detectionAmount >= 1f)
-        //    {
-        //        enemyDetected = true;
-        //        break;
-        //    }
-        //}
-
-        //if (enemyDetected)
-        //{
-        //    if (!enemyDetectedBanner.activeSelf)
-        //    {
-        //        enemyDetectedBanner.SetActive(true);
-        //        enemyDetectedFlash = StartCoroutine(FlashBanner(enemyDetectedBanner, 0.4f));
-        //    }
-        //}
-        //else
-        //{
-        //    StopFlash(ref enemyDetectedFlash, enemyDetectedBanner);
-        //}
     }
 
     IEnumerator FlashBanner(GameObject banner, float speed)
