@@ -59,6 +59,11 @@ Application.Quit();
     {
         gamemanager.instance.openSettingsMenu();
     }
+    public void openSettingsMainMenu()
+    {
+        if (MainMenuController.instance != null)
+            MainMenuController.instance.openSettingsMainMenu();
+    }
 
     public void backToPauseMenu()
     {

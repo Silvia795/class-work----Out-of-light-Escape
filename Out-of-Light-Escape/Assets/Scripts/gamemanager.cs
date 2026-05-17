@@ -146,11 +146,14 @@ public class gamemanager : MonoBehaviour
     public void increaseAllDetectionRange()
     {
         enemyAI[] enemies = FindObjectsOfType<enemyAI>();
+
         int i = 0;
-        while(enemies[i] != null)
+
+        while(i < enemies.Length)
         {
-            i++;
+            
             enemies[i].increaseDetection();
+            i++;
         }
     }
 
