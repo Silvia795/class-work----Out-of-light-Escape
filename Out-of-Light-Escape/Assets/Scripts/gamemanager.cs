@@ -18,6 +18,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] Image detectBarLeft;
     [SerializeField] Image detectBarRight;
     [SerializeField] AudioMixer audioMixer;
+    [SerializeField] Slider sensitivitySlider;
     public Image playerHPBar;
     public float currentDetection;
     public GameObject playerDamageFlash;
@@ -165,9 +166,9 @@ public class gamemanager : MonoBehaviour
 
     public void setMouseSensitivity(float sliderValue)
     {
-        if (cameraScript != null)
+        if (cameraScript != null && sensitivitySlider != null)
         {
-            cameraScript.sensitivity = Mathf.Lerp(50f, 300f, sliderValue);
+            cameraScript.sensitivity = Mathf.Lerp(50f, 300f, sensitivitySlider.value);
         }
     }
 }
