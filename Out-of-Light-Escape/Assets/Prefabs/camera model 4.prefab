@@ -467,7 +467,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 874211921887840897}
-  - component: {fileID: 528661219019656390}
   - component: {fileID: 4118071250303761329}
   - component: {fileID: 5773944427278024218}
   - component: {fileID: 7490192010414025102}
@@ -495,28 +494,6 @@ Transform:
   - {fileID: 8640166071646933991}
   m_Father: {fileID: 6417123221390097669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &528661219019656390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4314052468101191878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46bb7c98147a8f944b04d1985f1d9aed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::cameraDetection
-  cameraHead: {fileID: 874211921887840897}
-  player: {fileID: 0}
-  viewMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  scanSpeed: 0.3
-  scanAngle: 60
-  rotateSpeed: 5
-  detectionSpeed: 0.25
-  loseSpeed: 0.5
 --- !u!33 &4118071250303761329
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -749,6 +726,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6417123221390097669}
+  - component: {fileID: 8469424284676762003}
   - component: {fileID: 4324451962378743157}
   - component: {fileID: 7485004178986388474}
   - component: {fileID: 2215397890782970563}
@@ -775,6 +753,21 @@ Transform:
   - {fileID: 874211921887840897}
   m_Father: {fileID: 2453375133008014882}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &8469424284676762003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8975805427054853671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb1fb24624cc7f94b81335447a1a02fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SecurityCamera
+  maxAngle: 75
+  minTime: 20
+  maxTime: 35
 --- !u!33 &4324451962378743157
 MeshFilter:
   m_ObjectHideFlags: 0
