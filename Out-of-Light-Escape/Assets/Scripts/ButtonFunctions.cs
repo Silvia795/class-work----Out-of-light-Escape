@@ -54,20 +54,15 @@ Application.Quit();
 
         SceneManager.LoadScene(mainMenuScene);
     }
-
     public void openSettingsMenu()
     {
-        gamemanager.instance.openSettingsMenu();
+        if (gamemanager.instance != null)
+            gamemanager.instance.openSettingsMenu();
     }
     public void openSettingsMainMenu()
     {
         if (MainMenuController.instance != null)
             MainMenuController.instance.openSettingsMainMenu();
-    }
-
-    public void backToPauseMenu()
-    {
-        gamemanager.instance.backToPauseMenu();
     }
 
 }

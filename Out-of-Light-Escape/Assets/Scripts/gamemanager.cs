@@ -1,6 +1,7 @@
+using TMPro;
+using UnityEditor.ProBuilder;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 
 public class gamemanager : MonoBehaviour
@@ -10,6 +11,7 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuActive;
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuDeath;
+    [SerializeField] GameObject menuSettings;
     [SerializeField] GameObject menuWin;
     [SerializeField] GameObject reticle;
     [SerializeField] TMP_Text gameGoalCountText;
@@ -130,7 +132,7 @@ public class gamemanager : MonoBehaviour
     {
         enemyAI[] enemies = FindObjectsOfType<enemyAI>();
         int i = 0;
-        while(enemies[i] != null)
+        while (enemies[i] != null)
         {
             i++;
             enemies[i].increaseDetection();
@@ -139,9 +141,31 @@ public class gamemanager : MonoBehaviour
 
     public void UpdateAmmoUI(int currentAmmo, int maxAmmo, int ammoReserve)
     {
-        if(chargeText != null)
+        if (chargeText != null)
             chargeText.text = $"{currentAmmo} / {maxAmmo}   :   {ammoReserve}";
     }
 
 
+
+    public void openSettingsMenu()
+    {
+        if (menuActive != null)
+            menuActive.SetActive(false);
+
+        menuActive = menuSettings;
+        menuActive.SetActive(true);
+
+        statePause();
+    }
+
+    public void backToPauseMenu()
+    {
+        if (menuActive != null)
+            menuActive.SetActive(false);
+
+        menuActive = menuPause;
+        menuActive.SetActive(true);
+
+        statePause();
+    }
 }

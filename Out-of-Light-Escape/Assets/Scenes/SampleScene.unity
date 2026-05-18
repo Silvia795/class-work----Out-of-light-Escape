@@ -16989,6 +16989,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 599038612093543904, guid: ba80b85bf77952144a7c91245a33d968, type: 3}
   m_PrefabInstance: {fileID: 2011005623}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2057919237 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3972847879803354988, guid: a21c9db63d89d464a825c9520b025c91, type: 3}
+  m_PrefabInstance: {fileID: 6846414169193269381}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2068612040 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3384433026654711817, guid: c99a2590f2595214eae7cb4fd18e4097, type: 3}
@@ -20183,7 +20188,7 @@ PrefabInstance:
     - target: {fileID: 5246696078142089593, guid: 45e5acd48523f324fb56f2d99be7721d, type: 3}
       propertyPath: menuSettings
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2057919237}
     - target: {fileID: 5246696078142089593, guid: 45e5acd48523f324fb56f2d99be7721d, type: 3}
       propertyPath: detectBarLeft
       value: 
@@ -21047,6 +21052,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2078806680}
     - target: {fileID: 8250711442978711099, guid: dd1a582dce3e41c4ab2d51f82983059b, type: 3}
+      propertyPath: maxReserve
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8250711442978711099, guid: dd1a582dce3e41c4ab2d51f82983059b, type: 3}
       propertyPath: shootDamage
       value: 1
       objectReference: {fileID: 0}
@@ -21069,6 +21078,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 1237007377343739346, guid: dd1a582dce3e41c4ab2d51f82983059b, type: 3}
+    - {fileID: 6533286434573888330, guid: dd1a582dce3e41c4ab2d51f82983059b, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 8163375667199126198, guid: dd1a582dce3e41c4ab2d51f82983059b, type: 3}
       insertIndex: -1
@@ -21216,6 +21226,18 @@ PrefabInstance:
     - target: {fileID: 794717082820783346, guid: a21c9db63d89d464a825c9520b025c91, type: 3}
       propertyPath: m_AnchorMin.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 913499305354227667, guid: a21c9db63d89d464a825c9520b025c91, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1574170256}
+    - target: {fileID: 913499305354227667, guid: a21c9db63d89d464a825c9520b025c91, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: backToPauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 913499305354227667, guid: a21c9db63d89d464a825c9520b025c91, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: gamemanager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1671359180635262918, guid: a21c9db63d89d464a825c9520b025c91, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
