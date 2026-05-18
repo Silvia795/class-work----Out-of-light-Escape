@@ -365,7 +365,12 @@ MonoBehaviour:
   stunEffect: {fileID: 5894327660429377950, guid: 6980a48c33c2d8b43a79e66f73db77dd, type: 3}
   particlePos: {fileID: 8960940343055147055}
   roamDist: 29
-  roamPauseTime: 3
+  roamPauseTime: 2
+  detectionAmount: 0
+  detectionBuildSpeed: 0.5
+  detectionLoseSpeed: 0.75
+  playerDetected: 0
+  rangeMod: 0
 --- !u!23 &9125045645426266803
 MeshRenderer:
   m_ObjectHideFlags: 0
