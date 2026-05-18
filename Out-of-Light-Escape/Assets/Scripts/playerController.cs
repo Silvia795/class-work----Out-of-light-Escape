@@ -26,6 +26,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup
     [SerializeField] stunStats stunWeapon;
     [SerializeField] bool hasStunGun;
     [SerializeField] bool usingStunGun;
+    [Range(5, 50)][SerializeField] public int maxReserve;
 
     [Header("---- Hit Effects ----")]
     [SerializeField] ParticleSystem defaultHitEffect;
@@ -34,10 +35,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup
     int gunListPos;
     int jumpCount;
     int HPOrig;
+    bool isReloading;
 
-    float shootTimer;
-    float stunShootTimer;
-    float stunChargeTimer;
+    public float stunShootTimer;
+    public int chargesMax;
+    public int chargesReserve;
+    public float reloadTime;
+    public float reloadLength;
+    public int chargesCurr;
 
     Vector3 moveDir;
     Vector3 playerVel;
@@ -64,6 +69,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup
             usingStunGun = true;
             changeGun();
         }
+
     }
 
     // Update is called once per frame
@@ -71,7 +77,12 @@ public class playerController : MonoBehaviour, IDamage, IPickup
     {
         movement();
         sprint();
-        rechargeStunGun();
+
+        if (Input.GetKeyDown(KeyCode.R) && !isReloading && hasStunGun && stunWeapon != null
+        && chargesCurr < chargesMax && chargesReserve > 0)
+        {
+            StartCoroutine(ReloadStunGun());
+        }
     }
 
     public void spawnPlayer()
@@ -85,7 +96,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup
     void movement()
     {
         //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDistance, Color.white);
-        shootTimer += Time.deltaTime;
+        //shootTimer += Time.deltaTime;
         stunShootTimer += Time.deltaTime;
         if(controller.isGrounded)
         {
@@ -107,7 +118,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup
             {
                 shootStunGun();
             }
-            else if (gunList.Count > 0 && gunList[gunListPos].ammoCur > 0 && shootTimer >= gunList[gunListPos].shootRate)
+            else if (gunList.Count > 0 && gunList[gunListPos].ammoCur > 0 )
             {
                 shoot();
             }
@@ -140,7 +151,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup
     void shoot()
     {
         Debug.Log("PLAYER SHOOT CALLED");
-        shootTimer = 0;
+        //shootTimer = 0;
         gunList[gunListPos].ammoCur--;
 
         RaycastHit hit;
@@ -159,25 +170,26 @@ public class playerController : MonoBehaviour, IDamage, IPickup
         }
     }
 
-            void shootStunGun()
-   {
-        if (!hasStunGun || stunWeapon == null)
+    void shootStunGun()
+    {
+        if (!hasStunGun || stunWeapon == null || isReloading)
         {
             return;
         }
 
-        if (stunWeapon.chargeCur < stunWeapon.chargeUse)
+        if (chargesCurr <= 0)
         {
             return;
         }
 
-        if (shootTimer < stunWeapon.shootRate)
+        if (stunShootTimer < stunWeapon.shootRate)
         {
             return;
         }
 
-        shootTimer = 0;
-        stunWeapon.chargeCur -= stunWeapon.chargeUse;
+        stunShootTimer = 0;
+
+        chargesCurr--;
 
         RaycastHit hit;
         if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, stunWeapon.shootDist, ~ignoreLayer))
@@ -193,30 +205,26 @@ public class playerController : MonoBehaviour, IDamage, IPickup
                 enemy.applyStun();
             }
         }
+        gamemanager.instance.UpdateAmmoUI(chargesCurr, chargesMax, chargesReserve);
     }
 
-    void rechargeStunGun()
-        {
-            if (!hasStunGun || stunWeapon == null)
-            {
-                return;
-            }
+    IEnumerator ReloadStunGun()
+    {
+        isReloading = true;
 
-            stunChargeTimer += Time.deltaTime;
+        // Add animation here
 
-            if (stunChargeTimer < stunWeapon.chargeFillDelay)
-            {
-                return;
-            }
+        yield return new WaitForSeconds(reloadLength);
 
-            stunChargeTimer = 0;
-            stunWeapon.chargeCur += stunWeapon.chargeFillAmount;
+        int needed = chargesMax - chargesCurr;
+        int toReload = Mathf.Min(needed, chargesReserve);
 
-            if (stunWeapon.chargeCur > stunWeapon.chargeMax)
-            {
-                stunWeapon.chargeCur = stunWeapon.chargeMax;
-            }
-        }
+        chargesCurr += toReload;
+        chargesReserve -= toReload;
+
+        isReloading = false;
+        gamemanager.instance.UpdateAmmoUI(chargesCurr, chargesMax, chargesReserve);
+    }
 
     public void takeDamage(int amount)
     {
@@ -271,7 +279,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup
         gunList.Add(gun);
         gunListPos = gunList.Count - 1;
         changeGun();
-
+        gamemanager.instance.UpdateAmmoUI(chargesCurr, chargesMax, chargesReserve);
     }
 
     public void getStunGunStats(stunStats gun)
@@ -280,12 +288,15 @@ public class playerController : MonoBehaviour, IDamage, IPickup
         stunWeapon = gun;
         hasStunGun = true;
         usingStunGun = true;
-        stunWeapon.chargeCur = stunWeapon.chargeMax;
-        stunChargeTimer = 0;
+        chargesMax = gun.chargesMax;
+        reloadLength = gun.reloadLength;
+        chargesCurr = gun.startingCharges;
+        chargesReserve = gun.chargesReserve;
         stunShootTimer = 999f;
 
-        Debug.Log("stunShootTimer set to: " + stunShootTimer);
+       Debug.Log("stunShootTimer set to: " + stunShootTimer);
         changeGun();
+        gamemanager.instance.UpdateAmmoUI(chargesCurr, chargesMax, chargesReserve);
     }
     void changeGun()
     {
@@ -321,5 +332,14 @@ public class playerController : MonoBehaviour, IDamage, IPickup
             gunListPos--;
             changeGun();
         }
+    }
+
+    public bool playerHasStunGun()
+    {
+        if(hasStunGun)
+        {
+            return true;
+        }
+        return false;
     }
 }

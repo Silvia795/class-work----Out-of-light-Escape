@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.Audio;
 
 
 public class gamemanager : MonoBehaviour
@@ -12,26 +11,28 @@ public class gamemanager : MonoBehaviour
     [SerializeField] GameObject menuPause;
     [SerializeField] GameObject menuDeath;
     [SerializeField] GameObject menuWin;
-    [SerializeField] GameObject menuSettings;
     [SerializeField] GameObject reticle;
     [SerializeField] TMP_Text gameGoalCountText;
     [SerializeField] Image detectBarLeft;
     [SerializeField] Image detectBarRight;
-    [SerializeField] AudioMixer audioMixer;
-    [SerializeField] Slider sensitivitySlider;
+
+    [SerializeField] TMP_Text chargeText;
+
+
     public Image playerHPBar;
     public float currentDetection;
     public GameObject playerDamageFlash;
     public bool isPaused;
     public GameObject player;
     public playerController playerScript;
-    public cameraController cameraScript;
     public GameObject playerSpawnPos;
 
 
     float timeScaleOrig;
     float detectionFrameMax;
     int gameGoalCount;
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
@@ -42,6 +43,8 @@ public class gamemanager : MonoBehaviour
         playerScript = player.GetComponent<playerController>();
 
         playerSpawnPos = GameObject.FindWithTag("Player Spawn Pos");
+
+
     }
 
     // Update is called once per frame
@@ -105,26 +108,6 @@ public class gamemanager : MonoBehaviour
         menuActive = null;
         reticle.SetActive(true);
     }
-
-    public void openSettingsMenu()
-    {
-        menuPause.SetActive(false);
-        menuSettings.SetActive(true);
-        menuActive = menuSettings;
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-    }
-
-    public void backToPauseMenu()
-    {
-        menuSettings.SetActive(false);
-        menuPause.SetActive(true);
-        menuActive = menuPause;
-
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
-    }
     public void playerDeath()
     {
         statePause();
@@ -146,32 +129,19 @@ public class gamemanager : MonoBehaviour
     public void increaseAllDetectionRange()
     {
         enemyAI[] enemies = FindObjectsOfType<enemyAI>();
-
         int i = 0;
-
-        while(i < enemies.Length)
+        while(enemies[i] != null)
         {
-            
-            enemies[i].increaseDetection();
             i++;
+            enemies[i].increaseDetection();
         }
     }
 
-    public void setGraphicsQuality(int qualityIndex)
+    public void UpdateAmmoUI(int currentAmmo, int maxAmmo, int ammoReserve)
     {
-        QualitySettings.SetQualityLevel(qualityIndex);
+        if(chargeText != null)
+            chargeText.text = $"{currentAmmo} / {maxAmmo}   :   {ammoReserve}";
     }
 
-    public void setMasterVolum(float volume)
-    {
-        audioMixer.SetFloat("MasterVolume", Mathf.Log10(volume) * 20);
-    }
 
-    public void setMouseSensitivity(float sliderValue)
-    {
-        if (cameraScript != null && sensitivitySlider != null)
-        {
-            cameraScript.sensitivity = Mathf.Lerp(50f, 300f, sensitivitySlider.value);
-        }
-    }
 }
