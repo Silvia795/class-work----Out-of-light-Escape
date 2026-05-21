@@ -34,7 +34,7 @@ public class enemyAI : MonoBehaviour, IDamage
 
     [Header("----- Detection Stats -----")]
 
-    [SerializeField] float detectionAmount;
+    [SerializeField] public float detectionAmount;
     [SerializeField] float detectionBuildSpeed = 0.5f;
     [SerializeField] float detectionLoseSpeed = 0.75f;
     [SerializeField] bool playerDetected;
