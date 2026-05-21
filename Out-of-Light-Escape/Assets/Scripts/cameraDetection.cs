@@ -71,10 +71,7 @@ public class cameraDetection : MonoBehaviour
         );
     }
 
-    void UpdateDetectionUI()
-    {
-        gamemanager.instance.reportDetection(detectionAmount);
-    }
+    void UpdateDetectionUI() => gamemanager.instance.reportDetection(detectionAmount);
     void ScanArea()
     {
         scanTimer += Time.deltaTime * scanSpeed;

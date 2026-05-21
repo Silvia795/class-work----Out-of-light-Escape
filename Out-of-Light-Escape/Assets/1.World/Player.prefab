@@ -63,8 +63,15 @@ MonoBehaviour:
   stunWeapon: {fileID: 0}
   hasStunGun: 0
   usingStunGun: 0
+  maxReserve: 5
   defaultHitEffect: {fileID: 8429467070676067265, guid: e1c14b8cc4a43f44db07edd7c20e7762, type: 3}
   enemyHitEffcet: {fileID: 5894327660429377950, guid: 6980a48c33c2d8b43a79e66f73db77dd, type: 3}
+  stunShootTimer: 0
+  chargesMax: 0
+  chargesReserve: 0
+  reloadTime: 0
+  reloadLength: 0
+  chargesCurr: 0
 --- !u!143 &9079840123592452624
 CharacterController:
   m_ObjectHideFlags: 0

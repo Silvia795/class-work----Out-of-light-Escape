@@ -3240,6 +3240,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 3432882963177602544, guid: d9d9ed8e5baebdd419f4481e2247c144, type: 3}
+      propertyPath: m_RenderShadows
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3814676061677315542, guid: d9d9ed8e5baebdd419f4481e2247c144, type: 3}
       propertyPath: m_Mesh
       value: 
