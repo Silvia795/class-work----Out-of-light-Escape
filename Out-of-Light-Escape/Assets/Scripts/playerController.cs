@@ -105,10 +105,18 @@ public class playerController : MonoBehaviour, IDamage, IPickup
         }
         else
         {
-            isCrouching = false;
-            controller.height = standingHeight;
-            speed = normalSpeed;
+           if (CanStandUp())
+            {
+                isCrouching = false;
+                controller.height = standingHeight;
+                speed = normalSpeed;
+            }
         }
+    }
+
+    bool CanStandUp()
+    {
+        return !Physics.Raycast(transform.position, Vector3.up, standingHeight);
     }
 
     public void spawnPlayer()
