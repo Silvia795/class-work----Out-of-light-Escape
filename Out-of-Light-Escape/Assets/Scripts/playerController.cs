@@ -19,6 +19,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup
     [Range(1, 10)] [SerializeField] int jumpMax;
     [Range(1, 10)] [SerializeField] int gravity;
 
+    [Header("---- Crouch ----")]
+    [SerializeField] float standingHeight = 2f;
+    [SerializeField] float crouchHeight = 1f;
+    [SerializeField] int crouchSpeed = 2;
+
     [Header("----- Enemy Guns ----")]
     [SerializeField] List<gunStats> gunList = new List<gunStats>();
 
@@ -35,6 +40,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup
     int gunListPos;
     int jumpCount;
     int HPOrig;
+    int normalSpeed;
+    bool isCrouching;
     bool isReloading;
 
     public float stunShootTimer;
@@ -51,6 +58,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup
     void Start()
     {
         HPOrig = HP;
+        normalSpeed = speed;
+        standingHeight = controller.height;
         spawnPlayer();
 
         if (stunWeapon != null)
@@ -77,11 +86,28 @@ public class playerController : MonoBehaviour, IDamage, IPickup
     {
         movement();
         sprint();
+        crouch();
 
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && hasStunGun && stunWeapon != null
         && chargesCurr < chargesMax && chargesReserve > 0)
         {
             StartCoroutine(ReloadStunGun());
+        }
+    }
+
+    void crouch()
+    {
+        if (Input.GetKey(KeyCode.LeftControl))
+        {
+            isCrouching = true;
+            controller.height = crouchHeight;
+            speed = crouchSpeed;
+        }
+        else
+        {
+            isCrouching = false;
+            controller.height = standingHeight;
+            speed = normalSpeed;
         }
     }
 
