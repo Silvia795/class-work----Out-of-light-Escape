@@ -29,8 +29,12 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] Transform particlePos;
 
     [Header("----- Roaming Stats -----")]
-    [Range(1, 500)][SerializeField] int roamDist;
-    [Range(0, 10)][SerializeField] int roamPauseTime;
+    [SerializeField] Transform[] patrolPoints;
+    [SerializeField] float patrolWaitTime = 2f;
+
+    //[Header("----- Roaming Stats -----")]
+    //[Range(1, 500)][SerializeField] int roamDist;
+    //[Range(0, 10)][SerializeField] int roamPauseTime;
 
     [Header("----- Detection Stats -----")]
 
@@ -51,6 +55,9 @@ public class enemyAI : MonoBehaviour, IDamage
 
    int playerSeen = 1;
 
+   int currentPatrolIndex;
+   float patrolTimer;
+
     Vector3 playerDir;
     Vector3 startingPos;
     Vector3 modelStartPos;
@@ -66,6 +73,12 @@ public class enemyAI : MonoBehaviour, IDamage
         stoppingDistOrig = agent.stoppingDistance;
         modelStartPos = modelPivot.localPosition;
         modelStartRot = modelPivot.localRotation;
+
+        if(patrolPoints.Length > 0)
+        {
+            agent.SetDestination(patrolPoints[currentPatrolIndex].position);
+        }
+
     }
 
     // Update is called once per frame
@@ -108,27 +121,53 @@ public class enemyAI : MonoBehaviour, IDamage
 
     void checkRoam()
     {
-        if (agent.remainingDistance < 0.01f)
-        {
-            roamTimer += Time.deltaTime;
+        if (patrolPoints.Length == 0)
+            return;
 
-            if (roamTimer >= roamPauseTime)
-                roam();
+        if (!agent.pathPending && agent.remainingDistance <= agent.stoppingDistance + 0.1f)
+        {
+            patrolTimer += Time.deltaTime;
+
+            if (patrolTimer >= patrolWaitTime)
+            {
+                patrolTimer = 0;
+
+                currentPatrolIndex++;
+
+                if(currentPatrolIndex >= patrolPoints.Length)
+                    currentPatrolIndex = 0;
+                    
+                    agent.stoppingDistance = 0;
+                agent.SetDestination(patrolPoints[currentPatrolIndex].position);
+
+            }
         }
     }
 
-    void roam()
-    {
-        roamTimer = 0;
-        agent.stoppingDistance = 0;
 
-        Vector3 ranPos = Random.insideUnitSphere * roamDist;
-        ranPos += startingPos;
+    //void checkRoam()
+    //{
+    //    if (agent.remainingDistance < 0.01f)
+    //    {
+    //        roamTimer += Time.deltaTime;
 
-        NavMeshHit hit;
-        NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
-        agent.SetDestination(hit.position);
-    }
+    //        if (roamTimer >= roamPauseTime)
+    //            roam();
+    //    }
+    //}
+
+    //void roam()
+    //{
+    //    roamTimer = 0;
+    //    agent.stoppingDistance = 0;
+
+    //    Vector3 ranPos = Random.insideUnitSphere * roamDist;
+    //    ranPos += startingPos;
+
+    //    NavMeshHit hit;
+    //    NavMesh.SamplePosition(ranPos, out hit, roamDist, 1);
+    //    agent.SetDestination(hit.position);
+    //}
 
     bool canSeePlayer()
     {
