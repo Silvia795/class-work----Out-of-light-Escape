@@ -8,6 +8,7 @@ public class MainMenuController : MonoBehaviour
     [Header("Menus")]
     [SerializeField] GameObject mainMenu;
     [SerializeField] GameObject settingsMenu;
+    [SerializeField] GameObject menuCredits;
 
     [Header("Scene")]
     [SerializeField] string nextSceneName = "GameScene";
@@ -56,7 +57,17 @@ public class MainMenuController : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
     }
+    public void openCreditsMainMenu()
+    {
+        mainMenu.SetActive(false);
+        menuCredits.SetActive(true);
+    }
 
+    public void closeCreditsMainMenu()
+    {
+        menuCredits.SetActive(false);
+        mainMenu.SetActive(true);
+    }
     public void QuitGame()
     {
 #if UNITY_EDITOR
