@@ -64,5 +64,16 @@ Application.Quit();
         if (MainMenuController.instance != null)
             MainMenuController.instance.openSettingsMainMenu();
     }
+    public void openCreditsMainMenu()
+    {
+        if (MainMenuController.instance != null)
+            MainMenuController.instance.openCreditsMainMenu();
+    }
+
+    public void closeCreditsMainMenu()
+    {
+        if (MainMenuController.instance != null)
+            MainMenuController.instance.closeCreditsMainMenu();
+    }
 
 }
