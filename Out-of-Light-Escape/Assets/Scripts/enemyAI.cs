@@ -28,7 +28,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] ParticleSystem stunEffect;
     [SerializeField] Transform particlePos;
 
-    [Header("----- Patroling Stats -----")]
+    [Header("----- Patrolling Stats -----")]
     [SerializeField] Transform[] patrolPoints;
     [SerializeField] float patrolWaitTime = 2f;
 
