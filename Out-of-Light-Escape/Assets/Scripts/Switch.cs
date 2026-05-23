@@ -1,19 +1,33 @@
 using UnityEngine;
 using System.Collections;
 
-public class DoorSwitch : MonoBehaviour
+public class Switch : MonoBehaviour
 {
     [SerializeField] VerticalDoor door;
     [SerializeField] KeyCode interactKey = KeyCode.E;
     [SerializeField] float openDuration = 3f;
-    [SerializeField] GameObject button;
+    [SerializeField] GameObject buttonPrompt;
+    [SerializeField] bool requiresStunGun = true;
 
     bool playerInRange;
     bool isRunning;
+    playerController player;
+
     void Update()
     {
         if (playerInRange && Input.GetKeyDown(interactKey) && !isRunning)
         {
+            if (requiresStunGun && player != null && !player.playerHasStunGun())
+            {
+                if (buttonPrompt != null)
+                {
+                    buttonPrompt.SetActive(true);
+                    buttonPrompt.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Stun gun required";
+                }
+
+                return;
+            }
+
             StartCoroutine(AutoClose());
         }
     }
@@ -23,15 +37,28 @@ public class DoorSwitch : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = true;
-            button.SetActive(true);
+            player = other.GetComponent<playerController>();
+
+            if (buttonPrompt != null)
+            {
+                buttonPrompt.SetActive(true);
+
+                if (requiresStunGun && player != null && !player.playerHasStunGun())
+                    buttonPrompt.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Stun gun required";
+                else
+                    buttonPrompt.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = "Press E to interact";
+            }
         }
     }
+
     IEnumerator AutoClose()
     {
         isRunning = true;
 
+        if (buttonPrompt != null)
+            buttonPrompt.SetActive(false);
+
         door.ToggleDoor();
-        button.SetActive(false);
 
         yield return new WaitForSeconds(openDuration);
 
@@ -45,7 +72,10 @@ public class DoorSwitch : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             playerInRange = false;
-            button.SetActive(false);
+            player = null;
+
+            if (buttonPrompt != null)
+                buttonPrompt.SetActive(false);
         }
     }
 }
