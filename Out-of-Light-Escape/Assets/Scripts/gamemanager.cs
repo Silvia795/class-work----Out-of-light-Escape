@@ -1,5 +1,4 @@
 using TMPro;
-using UnityEditor.ProBuilder;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -130,12 +129,12 @@ public class gamemanager : MonoBehaviour
 
     public void increaseAllDetectionRange()
     {
-        enemyAI[] enemies = FindObjectsOfType<enemyAI>();
+        enemyAI[] enemies = FindObjectsByType<enemyAI>(FindObjectsSortMode.None);
         int i = 0;
-        while (enemies[i] != null)
+        while (i < enemies.Length)
         {
-            i++;
             enemies[i].increaseDetection();
+            i++;
         }
     }
 
