@@ -45,10 +45,17 @@ public class laserAlwaysOn : MonoBehaviour
             hitEffect.SetActive(true);
             hitEffect.transform.position = hit.point;
 
-            IDamage dmg = hit.collider.GetComponent<IDamage>();
+            if (hit.collider.GetComponentInParent<enemyAI>() != null)
+            {
+                return;
+            }
+
+            IDamage dmg = hit.collider.GetComponentInParent<IDamage>();
 
             if (dmg != null && !isDamaging)
+            {
                 StartCoroutine(damageTime(dmg));
+            }
         }
 
         else

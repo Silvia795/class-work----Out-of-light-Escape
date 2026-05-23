@@ -37,6 +37,12 @@ public class playerController : MonoBehaviour, IDamage, IPickup
     [SerializeField] ParticleSystem defaultHitEffect;
     [SerializeField] ParticleSystem enemyHitEffcet;
 
+    [Header("---- Audio ----")]
+    [SerializeField] FootstepAudio footstepAudio; 
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip gunShotSFX;
+    [SerializeField] AudioClip stunShotSFX;
+
     int gunListPos;
     int jumpCount;
     int HPOrig;
@@ -57,6 +63,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        footstepAudio = GetComponent<FootstepAudio>();
         HPOrig = HP;
         normalSpeed = speed;
         standingHeight = controller.height;
@@ -84,9 +91,9 @@ public class playerController : MonoBehaviour, IDamage, IPickup
     // Update is called once per frame
     void Update()
     {
-        movement();
-        sprint();
         crouch();
+        sprint();
+        movement();
 
         if (Input.GetKeyDown(KeyCode.R) && !isReloading && hasStunGun && stunWeapon != null
         && chargesCurr < chargesMax && chargesReserve > 0)
@@ -103,14 +110,10 @@ public class playerController : MonoBehaviour, IDamage, IPickup
             controller.height = crouchHeight;
             speed = crouchSpeed;
         }
-        else
+        else if (CanStandUp())
         {
-           if (CanStandUp())
-            {
-                isCrouching = false;
-                controller.height = standingHeight;
-                speed = normalSpeed;
-            }
+            isCrouching = false;
+            controller.height = standingHeight;
         }
     }
 
@@ -132,7 +135,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup
         //Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward * shootDistance, Color.white);
         //shootTimer += Time.deltaTime;
         stunShootTimer += Time.deltaTime;
-        if(controller.isGrounded)
+        if (controller.isGrounded)
         {
             jumpCount = 0;
             playerVel.y = 0;
@@ -146,30 +149,51 @@ public class playerController : MonoBehaviour, IDamage, IPickup
         controller.Move(playerVel * Time.deltaTime);
         playerVel.y -= gravity * Time.deltaTime;
 
-        if (Input.GetButton("Fire1"))
+        if (Input.GetButton("Fire1") && !isCrouching)
         {
             if (usingStunGun)
             {
                 shootStunGun();
             }
-            else if (gunList.Count > 0 && gunList[gunListPos].ammoCur > 0 )
+            else if (gunList.Count > 0 && gunList[gunListPos].ammoCur > 0)
             {
                 shoot();
             }
         }
 
-        selectGun();
+        bool isRunning = Input.GetButton("Sprint");
+
+        bool groundedForSteps = Physics.SphereCast(
+            transform.position,
+            controller.radius * 0.9f,
+            Vector3.down,
+            out RaycastHit hit,
+            controller.height / 2f + 0.2f
+        );
+
+        if (footstepAudio != null && !isCrouching)
+        {
+            footstepAudio.HandleFootsteps(
+                moveDir.magnitude,
+                isRunning,
+                groundedForSteps
+            );
+        }
+
+
+
+            selectGun();
     }
 
     void sprint()
     {
-        if(Input.GetButtonDown("Sprint"))
+        if (Input.GetButton("Sprint") && !isCrouching)
         {
-            speed *= sprintMod;
+            speed = normalSpeed * sprintMod;
         }
-        else if(Input.GetButtonUp("Sprint"))
+        else if (!isCrouching)
         {
-            speed /= sprintMod;
+            speed = normalSpeed;
         }
     }
 
@@ -184,20 +208,25 @@ public class playerController : MonoBehaviour, IDamage, IPickup
 
     void shoot()
     {
-        Debug.Log("PLAYER SHOOT CALLED");
-        //shootTimer = 0;
+        if (audioSource != null && gunShotSFX != null)
+        {
+            audioSource.PlayOneShot(gunShotSFX);
+        }
+
         gunList[gunListPos].ammoCur--;
 
         RaycastHit hit;
-        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward, out hit, gunList[gunListPos].shootDist, ~ignoreLayer))
+        if (Physics.Raycast(Camera.main.transform.position, Camera.main.transform.forward,
+            out hit, gunList[gunListPos].shootDist, ~ignoreLayer))
         {
-                if (gunList[gunListPos] != null)
-                {
-                    Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
-                }
+            if (gunList[gunListPos] != null)
+            {
+                Instantiate(gunList[gunListPos].hitEffect, hit.point, Quaternion.identity);
+            }
 
             IDamage dmg = hit.collider.GetComponent<IDamage>();
-            if(dmg != null)
+
+            if (dmg != null)
             {
                 dmg.takeDamage(gunList[gunListPos].shootDamage);
             }
@@ -222,6 +251,11 @@ public class playerController : MonoBehaviour, IDamage, IPickup
         }
 
         stunShootTimer = 0;
+
+        if (audioSource != null && stunShotSFX != null)
+        {
+            audioSource.PlayOneShot(stunShotSFX);
+        }
 
         chargesCurr--;
 
@@ -356,15 +390,24 @@ public class playerController : MonoBehaviour, IDamage, IPickup
     }
     void selectGun()
     {
-        if (Input.GetAxis("Mouse ScrollWheel") > 0 && gunListPos < gunList.Count - 1)
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+
+        if (scroll > 0)
         {
-            gunListPos++;
-            changeGun();
+            if (hasStunGun)
+            {
+                usingStunGun = true;
+                changeGun();
+            }
         }
-        else if (Input.GetAxis("Mouse ScrollWheel") < 0 && gunListPos > 0)
+        else if (scroll < 0)
         {
-            gunListPos--;
-            changeGun();
+            if (gunList.Count > 0)
+            {
+                usingStunGun = false;
+                gunListPos = 0;
+                changeGun();
+            }
         }
     }
 

@@ -44,6 +44,9 @@ public class enemyAI : MonoBehaviour, IDamage
     [SerializeField] bool playerDetected;
     [SerializeField] float rangeMod;
 
+    [Header("---- Footsteps ----")]
+    [SerializeField] FootstepAudio footstepAudio;
+
     Color colorOrig;
     float shootTimer;
     float angleToPlayer;
@@ -116,6 +119,12 @@ public class enemyAI : MonoBehaviour, IDamage
                 gamemanager.instance.increaseAllDetectionRange();
             }
             checkRoam();
+        }
+
+        if (footstepAudio != null)
+        {
+            bool enemyIsMoving = agent.velocity.magnitude > 0.1f;
+            footstepAudio.HandleFootsteps(agent.velocity.magnitude, false, true);
         }
     }
 

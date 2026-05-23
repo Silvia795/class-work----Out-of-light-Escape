@@ -59,10 +59,19 @@ public class laser : MonoBehaviour
             hitEffect.SetActive(true);
             hitEffect.transform.position = hit.point;
 
+            enemyAI enemy = hit.collider.GetComponentInParent<enemyAI>();
+
+            if (enemy != null)
+            {
+                return;
+            }
+
             IDamage dmg = hit.collider.GetComponent<IDamage>();
 
             if (dmg != null && !isDamaging)
+            {
                 StartCoroutine(damageTime(dmg));
+            }
         }
 
         else
