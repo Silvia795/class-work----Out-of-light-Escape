@@ -49,6 +49,13 @@ public class checkpoint : MonoBehaviour
             activatePartilces.Stop(true, ParticleSystemStopBehavior.StopEmittingAndClear);
             activatePartilces.Play();
         }
+
+        DetectionBanner banner = FindFirstObjectByType<DetectionBanner>();
+
+        if (banner != null)
+        {
+            banner.ShowCheckpointBanner();
+        }
     }
 
     private void TurnIdleOn()

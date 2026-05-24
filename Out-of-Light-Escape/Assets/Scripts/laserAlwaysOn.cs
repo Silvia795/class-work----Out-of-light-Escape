@@ -14,7 +14,7 @@ public class laserAlwaysOn : MonoBehaviour
     [SerializeField] float maxTime = 3f;
 
     bool isDamaging;
-    bool laserOn = true;
+    //bool laserOn = true;
     float ranTimer;
 
     void Start()

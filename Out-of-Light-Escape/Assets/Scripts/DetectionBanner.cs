@@ -1,13 +1,15 @@
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
 
 public class DetectionBanner : MonoBehaviour
 {
     public GameObject suspectedBanner;
     public GameObject detectedBanner;
     public GameObject enemySuspectedBanner;
-    public GameObject enemyDetectedBanner;
+    public GameObject enemyDetectedBanner; 
+    public GameObject checkpointBanner;
 
+    private Coroutine checkpointFlash;
     private Coroutine suspectedFlash;
     private Coroutine detectedFlash;
     private Coroutine enemySuspectedFlash;
@@ -57,23 +59,34 @@ public class DetectionBanner : MonoBehaviour
             detectedBanner.SetActive(false);
         }
 
-        // ENEMY SUSPECTED STATE
-        bool enemySuspected = false;
-
+        // ENEMY STATE CHECK (shared enemies list)
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
+        bool enemySuspected = false;
+        bool enemyDetected = false;
+
+        // Scan all enemies once
         foreach (GameObject enemy in enemies)
         {
             enemyAI ai = enemy.GetComponent<enemyAI>();
 
-            if (ai != null && ai.detectionAmount >= 0.5f)
+            if (ai != null)
             {
-                enemySuspected = true;
-                break;
+                if (ai.detectionAmount >= 1f)
+                {
+                    enemyDetected = true;
+                    enemySuspected = true;
+                    break; // detected overrides everything
+                }
+
+                if (ai.detectionAmount >= 0.5f)
+                {
+                    enemySuspected = true;
+                }
             }
         }
 
-        if (enemySuspected)
+        if (enemySuspected && !enemyDetected)
         {
             if (!enemySuspectedBanner.activeSelf)
             {
@@ -86,22 +99,10 @@ public class DetectionBanner : MonoBehaviour
             StopFlash(ref enemySuspectedFlash, enemySuspectedBanner);
         }
 
-        // ENEMY DETECTED CHECK
-        bool enemyDetected = false;
-
-        foreach (GameObject enemy in enemies)
-        {
-            enemyAI ai = enemy.GetComponent<enemyAI>();
-
-            if (ai != null && ai.detectionAmount >= 1f)
-            {
-                enemyDetected = true;
-                break;
-            }
-        }
-
         if (enemyDetected)
         {
+            enemySuspectedBanner.SetActive(false);
+
             if (!enemyDetectedBanner.activeSelf)
             {
                 enemyDetectedBanner.SetActive(true);
@@ -163,6 +164,20 @@ public class DetectionBanner : MonoBehaviour
         }
     }
 
+    public void ShowCheckpointBanner()
+    {
+        StartCoroutine(CheckpointBannerRoutine());
+    }
 
+    IEnumerator CheckpointBannerRoutine()
+    {
+        checkpointBanner.SetActive(true);
+
+        checkpointFlash = StartCoroutine(FlashBanner(checkpointBanner, 0.8f));
+
+        yield return new WaitForSeconds(3f);
+
+        StopFlash(ref checkpointFlash, checkpointBanner);
+    }
 
 }
