@@ -33329,6 +33329,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 800023768340878836, guid: 35588612a8dbf044aa902bc62516b18c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 941318385787582522, guid: 35588612a8dbf044aa902bc62516b18c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1395102441036524186, guid: 35588612a8dbf044aa902bc62516b18c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3883555238702961160, guid: 35588612a8dbf044aa902bc62516b18c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4125985421543525900, guid: 35588612a8dbf044aa902bc62516b18c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4803605460466903188, guid: 35588612a8dbf044aa902bc62516b18c, type: 3}
       propertyPath: m_LocalPosition.x
       value: -21.2914
@@ -33610,6 +33630,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2347691240431054355, guid: 29f6889ce9404524ab637b60720b7e0c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2810933351658286657, guid: 29f6889ce9404524ab637b60720b7e0c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.37511
@@ -33650,9 +33674,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6223702915936814238, guid: 29f6889ce9404524ab637b60720b7e0c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7268977077496827866, guid: 29f6889ce9404524ab637b60720b7e0c, type: 3}
       propertyPath: m_Name
       value: 'YellowKeycard Guard 2 Patrol Path '
+      objectReference: {fileID: 0}
+    - target: {fileID: 7812101827767268936, guid: 29f6889ce9404524ab637b60720b7e0c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -35070,6 +35102,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 897499595129592836, guid: 8a9aa167811816248abc7290a919b553, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1010906566403879443, guid: 8a9aa167811816248abc7290a919b553, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4089193909897513923, guid: 8a9aa167811816248abc7290a919b553, type: 3}
       propertyPath: m_Name
       value: BookShelf Guard Patrol Path
@@ -35114,6 +35154,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8202389323255404212, guid: 8a9aa167811816248abc7290a919b553, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -35137,9 +35181,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1182512835877197143, guid: 76af9f7c1db3b854cabe6daae5fc3785, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1541264890270833985, guid: 76af9f7c1db3b854cabe6daae5fc3785, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2762551398462115219, guid: 76af9f7c1db3b854cabe6daae5fc3785, type: 3}
       propertyPath: m_Name
       value: BookShelf Guard 2 Patrol Path
+      objectReference: {fileID: 0}
+    - target: {fileID: 4324507600998287847, guid: 76af9f7c1db3b854cabe6daae5fc3785, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5432826986268947121, guid: 76af9f7c1db3b854cabe6daae5fc3785, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6307784534278451678, guid: 76af9f7c1db3b854cabe6daae5fc3785, type: 3}
       propertyPath: m_LocalPosition.x
@@ -35214,9 +35274,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3610422203840291150, guid: d0c8cee64b359044aa79e876f28233f4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3796519368764529542, guid: d0c8cee64b359044aa79e876f28233f4, type: 3}
       propertyPath: m_Name
       value: YellowKeycard Guard Patrol Path
+      objectReference: {fileID: 0}
+    - target: {fileID: 8219744599460676153, guid: d0c8cee64b359044aa79e876f28233f4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8855767824693836492, guid: d0c8cee64b359044aa79e876f28233f4, type: 3}
       propertyPath: m_LocalPosition.x
