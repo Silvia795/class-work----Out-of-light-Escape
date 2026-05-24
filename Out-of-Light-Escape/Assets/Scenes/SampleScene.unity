@@ -19524,9 +19524,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 831568034780120289, guid: d9e3d860b3f40ce46b25c0a74bae576a, type: 3}
+      propertyPath: detectedSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 653fb10bcd708b0438432a9b2ea83038, type: 3}
+    - target: {fileID: 831568034780120289, guid: d9e3d860b3f40ce46b25c0a74bae576a, type: 3}
+      propertyPath: suspectedSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 0f44943fdbe473e459ab83b9d60cc2e3, type: 3}
+    - target: {fileID: 831568034780120289, guid: d9e3d860b3f40ce46b25c0a74bae576a, type: 3}
+      propertyPath: checkpointSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 984cdd377ac500b4e8f4637e635e0a79, type: 3}
+    - target: {fileID: 831568034780120289, guid: d9e3d860b3f40ce46b25c0a74bae576a, type: 3}
       propertyPath: checkpointBanner
       value: 
       objectReference: {fileID: 1738076078}
+    - target: {fileID: 831568034780120289, guid: d9e3d860b3f40ce46b25c0a74bae576a, type: 3}
+      propertyPath: enemyDetectedSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 653fb10bcd708b0438432a9b2ea83038, type: 3}
+    - target: {fileID: 831568034780120289, guid: d9e3d860b3f40ce46b25c0a74bae576a, type: 3}
+      propertyPath: enemySuspectedSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: 0f44943fdbe473e459ab83b9d60cc2e3, type: 3}
     - target: {fileID: 831568034780120289, guid: d9e3d860b3f40ce46b25c0a74bae576a, type: 3}
       propertyPath: enemyDetectedBanner
       value: 

@@ -15,6 +15,14 @@ public class DetectionBanner : MonoBehaviour
     private Coroutine enemySuspectedFlash;
     private Coroutine enemyDetectedFlash;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+
+    public AudioClip suspectedSFX;
+    public AudioClip detectedSFX;
+    public AudioClip enemySuspectedSFX;
+    public AudioClip enemyDetectedSFX;
+    public AudioClip checkpointSFX;
 
     void Update()
     {
@@ -28,6 +36,7 @@ public class DetectionBanner : MonoBehaviour
             if (!suspectedBanner.activeSelf)
             {
                 suspectedBanner.SetActive(true);
+                audioSource.PlayOneShot(suspectedSFX);
                 suspectedFlash = StartCoroutine(FlashBanner(suspectedBanner, 0.8f));
             }
         }
@@ -44,6 +53,7 @@ public class DetectionBanner : MonoBehaviour
             if (!detectedBanner.activeSelf)
             {
                 detectedBanner.SetActive(true);
+                audioSource.PlayOneShot(detectedSFX);
                 detectedFlash = StartCoroutine(FlashBanner(detectedBanner, 0.4f));
             }
         }
@@ -91,6 +101,7 @@ public class DetectionBanner : MonoBehaviour
             if (!enemySuspectedBanner.activeSelf)
             {
                 enemySuspectedBanner.SetActive(true);
+                audioSource.PlayOneShot(enemySuspectedSFX);
                 enemySuspectedFlash = StartCoroutine(FlashBanner(enemySuspectedBanner, 0.8f));
             }
         }
@@ -106,6 +117,7 @@ public class DetectionBanner : MonoBehaviour
             if (!enemyDetectedBanner.activeSelf)
             {
                 enemyDetectedBanner.SetActive(true);
+                audioSource.PlayOneShot(enemyDetectedSFX);
                 enemyDetectedFlash = StartCoroutine(FlashBanner(enemyDetectedBanner, 0.4f));
             }
         }
@@ -166,6 +178,8 @@ public class DetectionBanner : MonoBehaviour
 
     public void ShowCheckpointBanner()
     {
+        audioSource.PlayOneShot(checkpointSFX);
+
         StartCoroutine(CheckpointBannerRoutine());
     }
 
