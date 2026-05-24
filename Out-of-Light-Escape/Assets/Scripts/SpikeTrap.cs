@@ -4,103 +4,81 @@ using UnityEngine;
 public class SpikeTrap : MonoBehaviour
 {
     [SerializeField] GameObject spikes;
-    [SerializeField] float resetTimer;
-    [SerializeField] int damageAmount;
+    [SerializeField] float moveDistance = 2f;
+    [SerializeField] float moveSpeed = 0.15f;
+    [SerializeField] float waitTime = 0.5f;
+    [SerializeField] int damageAmount = 10;
 
-    bool spikesActive;
-    float spikeTimer;
-    bool playerNear = false;
-    bool hasDealtDamage = false;
+    private Vector3 startPos;
+    private Vector3 endPos;
 
-    Vector3 startPos = new Vector3(0, 0, 0);
-    Vector3 endPos = new Vector3(0, 1, 0);
+    private bool hasDealtDamage = false;
 
-    void Start()
+    private void Start()
     {
         startPos = spikes.transform.localPosition;
-        endPos = startPos + new Vector3(0, 1, 0);
-        spikeTimer += 999f;
+
+        // Moves spikes downward
+        endPos = startPos - new Vector3(0, moveDistance, 0);
+
+        // Starts each trap at a random time
+        StartCoroutine(StartWithDelay());
     }
 
-    // Update is called once per frame
-    void Update()
+    private IEnumerator StartWithDelay()
     {
-        spikeTimer += Time.deltaTime;
-        if (playerNear && spikeTimer >= resetTimer && !spikesActive)
+        float randomDelay = Random.Range(0f, 2f);
+
+        yield return new WaitForSeconds(randomDelay);
+
+        StartCoroutine(MoveSpikesLoop());
+    }
+
+    private IEnumerator MoveSpikesLoop()
+    {
+        while (true)
         {
-            StartCoroutine(activateSpikes());
+            hasDealtDamage = false;
+
+            // Move down
+            yield return MoveSpikes(startPos, endPos);
+
+            yield return new WaitForSeconds(waitTime);
+
+            // Move back up
+            yield return MoveSpikes(endPos, startPos);
+
+            yield return new WaitForSeconds(waitTime);
         }
     }
 
-    IEnumerator activateSpikes()
+    private IEnumerator MoveSpikes(Vector3 from, Vector3 to)
     {
-        spikesActive = true;
-        spikeTimer = 0;
-        hasDealtDamage = false;
-
-        float duration = 0.05f;
         float elapsed = 0f;
 
-        while (elapsed < duration)
+        while (elapsed < moveSpeed)
         {
-            spikes.transform.localPosition = Vector3.Lerp(startPos, endPos, elapsed / duration);
+            spikes.transform.localPosition =
+                Vector3.Lerp(from, to, elapsed / moveSpeed);
+
             elapsed += Time.deltaTime;
+
             yield return null;
         }
-        spikes.transform.localPosition = endPos;
 
-        yield return new WaitForSeconds(0.5f);
-
-        elapsed = 0f;
-        while (elapsed < duration)
-        {
-            spikes.transform.localPosition = Vector3.Lerp(endPos, startPos, elapsed / duration);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-        spikes.transform.localPosition = startPos;
-
-        spikesActive = false;
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log("Trigger entered by: " + other.name);
-        if (other.CompareTag("Player"))
-        {
-            playerNear = true;
-            if (spikesActive && !hasDealtDamage)
-            {
-                IDamage dmg = other.GetComponent<IDamage>();
-                if (dmg != null)
-                {
-                    dmg.takeDamage(damageAmount);
-                }
-                hasDealtDamage = true;
-            }
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerNear = false;
-
-        }
+        spikes.transform.localPosition = to;
     }
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !hasDealtDamage)
         {
-            if (spikesActive && !hasDealtDamage)
+            IDamage dmg = other.GetComponent<IDamage>();
+
+            if (dmg != null)
             {
-                IDamage dmg = other.GetComponent<IDamage>();
-                if (dmg != null)
-                {
-                    dmg.takeDamage(damageAmount);
-                }
+                dmg.takeDamage(damageAmount);
+
                 hasDealtDamage = true;
             }
         }
