@@ -1,13 +1,19 @@
 using UnityEngine;
-using TMPro;
 
 public class LaserWarningTrigger : MonoBehaviour
 {
     public GameObject warningText;
 
+    public bool lasersDisabled;
+
+    private void Start()
+    {
+        warningText.SetActive(false);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !lasersDisabled)
         {
             warningText.SetActive(true);
         }
@@ -19,5 +25,11 @@ public class LaserWarningTrigger : MonoBehaviour
         {
             warningText.SetActive(false);
         }
+    }
+
+    public void DisableLasers()
+    {
+        lasersDisabled = true;
+        warningText.SetActive(false);
     }
 }

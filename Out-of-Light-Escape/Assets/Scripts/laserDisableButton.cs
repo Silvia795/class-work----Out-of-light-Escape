@@ -1,12 +1,13 @@
 using UnityEngine;
-using TMPro;
 
 public class LaserDisableButton : MonoBehaviour
 {
     public GameObject laserGroup;
     public GameObject pressEText;
+    public LaserWarningTrigger laserWarningTrigger;
 
     private bool playerNear;
+    private bool disabled;
 
     private void Start()
     {
@@ -15,16 +16,20 @@ public class LaserDisableButton : MonoBehaviour
 
     private void Update()
     {
-        if (playerNear && Input.GetKeyDown(KeyCode.E))
+        if (playerNear && !disabled && Input.GetKeyDown(KeyCode.E))
         {
+            disabled = true;
+
             laserGroup.SetActive(false);
             pressEText.SetActive(false);
+
+            laserWarningTrigger.DisableLasers();
         }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !disabled)
         {
             playerNear = true;
             pressEText.SetActive(true);
