@@ -18,18 +18,16 @@ public class FootstepAudio : MonoBehaviour
 
     public void HandleFootsteps(float moveAmount, bool isRunning, bool isGrounded)
     {
-        Debug.Log("HandleFootsteps called | moveAmount: " + moveAmount + " | grounded: " + isGrounded);
+        
 
         if (!isGrounded)
         {
-            Debug.Log("No footstep: player is not grounded");
             stepTimer = 0f;
             return;
         }
 
         if (moveAmount < minMoveSpeed)
         {
-            Debug.Log("No footstep: moveAmount too low");
             stepTimer = 0f;
             return;
         }
@@ -38,11 +36,11 @@ public class FootstepAudio : MonoBehaviour
 
         stepTimer += Time.deltaTime;
 
-        Debug.Log("Footstep timer: " + stepTimer + " / " + currentRate);
+        
 
         if (stepTimer >= currentRate)
         {
-            Debug.Log("Calling PlayFootstep now");
+            
             PlayFootstep();
             stepTimer = 0f;
         }
@@ -50,7 +48,7 @@ public class FootstepAudio : MonoBehaviour
 
     public void PlayFootstep()
     {
-        Debug.Log("PlayFootstep reached");
+     
         if (source == null || footstepClips.Length == 0)
             return;
 
@@ -58,6 +56,6 @@ public class FootstepAudio : MonoBehaviour
 
         source.pitch = Random.Range(pitchMin, pitchMax);
         source.PlayOneShot(footstepClips[index], volume);
-        Debug.Log("FOOTSTEP PLAYED");
+   
     }
 }
