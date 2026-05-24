@@ -64,15 +64,15 @@ MonoBehaviour:
   agent: {fileID: 1499281323880821007}
   modelPivot: {fileID: 2206143146202510471}
   knockedDownY: -0.5
-  HP: 1000
+  HP: 150
   targetFaceSpeed: 3
-  FOV: 60
+  FOV: 80
   bullet: {fileID: 3552667912173612551, guid: 2c9c90375d12963488dac6bb7813f02f, type: 3}
   shootRate: 0.5
   shootPos: {fileID: 8754702198023015162}
   gunPivot: {fileID: 5514937032754542369}
   gunRotateSpeed: 3
-  stunTimer: 3
+  stunTimer: 5
   stunEffect: {fileID: 5894327660429377950, guid: 6980a48c33c2d8b43a79e66f73db77dd, type: 3}
   particlePos: {fileID: 1370023819140035315}
   patrolPoints:

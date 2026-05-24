@@ -582,7 +582,7 @@ MonoBehaviour:
   knockedDownY: -0.5
   HP: 1000
   targetFaceSpeed: 3
-  FOV: 60
+  FOV: 75
   bullet: {fileID: 3552667912173612551, guid: 2c9c90375d12963488dac6bb7813f02f, type: 3}
   shootRate: 0.5
   shootPos: {fileID: 1994383879574572833}

@@ -14,7 +14,7 @@ public class enemyAI : MonoBehaviour, IDamage
     [Header("----- Ability Stats -----")]
     [Range(1, 1000)][SerializeField] int HP;
     [Range(1, 10)][SerializeField] int targetFaceSpeed;
-    [Range(40, 80)][SerializeField] int FOV;
+    [Range(40, 120)][SerializeField] int FOV;
 
     [Header("----- Gun Stats -----")]
     [SerializeField] GameObject bullet;

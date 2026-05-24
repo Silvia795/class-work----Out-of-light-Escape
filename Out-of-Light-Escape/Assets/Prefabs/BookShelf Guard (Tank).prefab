@@ -728,9 +728,9 @@ MonoBehaviour:
   agent: {fileID: 945437587250932388}
   modelPivot: {fileID: 7199731589486781656}
   knockedDownY: -0.5
-  HP: 30
-  targetFaceSpeed: 3
-  FOV: 60
+  HP: 200
+  targetFaceSpeed: 2
+  FOV: 75
   bullet: {fileID: 3552667912173612551, guid: 2c9c90375d12963488dac6bb7813f02f, type: 3}
   shootRate: 0.5
   shootPos: {fileID: 3153103721319554841}
