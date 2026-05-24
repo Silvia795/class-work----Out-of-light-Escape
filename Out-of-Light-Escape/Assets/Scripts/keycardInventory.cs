@@ -10,7 +10,7 @@ public class keycardInventory : MonoBehaviour
         if (!keycards.Contains(keycardID))
         {
             keycards.Add(keycardID);
-            Debug.Log("Picked up keycard: " + keycardID);
+            //Debug.Log("Picked up keycard: " + keycardID);
         }
     }
 

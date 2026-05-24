@@ -18,7 +18,7 @@ public class LaserTripwire : MonoBehaviour
 
             if (triggerAlarm)
             {
-                Debug.Log("Alarm triggered!");
+                //Debug.Log("Alarm triggered!");
             }
         }
     }

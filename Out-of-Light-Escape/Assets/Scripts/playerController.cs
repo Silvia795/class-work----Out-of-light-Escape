@@ -317,7 +317,7 @@ public class playerController : MonoBehaviour, IDamage, IPickup
 
         updatePlayerUI();
 
-        Debug.Log("Player healed. Current HP: " + HP);
+        //Debug.Log("Player healed. Current HP: " + HP);
     }
 
     //public getter for health pickups

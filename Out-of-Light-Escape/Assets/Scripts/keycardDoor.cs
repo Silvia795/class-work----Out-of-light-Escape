@@ -18,7 +18,7 @@ public class keycardDoor : MonoBehaviour
             {
                 hasOpened = true;
                 StartCoroutine(openAndCloseDoor());
-                Debug.Log("Door Unlocked");
+                //Debug.Log("Door Unlocked");
             }
             else
             {
