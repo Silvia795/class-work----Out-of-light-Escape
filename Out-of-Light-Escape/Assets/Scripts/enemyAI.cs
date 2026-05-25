@@ -127,7 +127,7 @@ public class enemyAI : MonoBehaviour, IDamage
             bool enemyIsMoving = agent.velocity.magnitude > 0.1f;
             footstepAudio.HandleFootsteps(agent.velocity.magnitude, false, true);
         }
-        anim.SetBool("isMoving", agent.velocity.magnitude > 0.1f);
+       // anim.SetBool("isMoving", agent.velocity.magnitude > 0.1f);
     }
 
     void checkRoam()
