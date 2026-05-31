@@ -38997,7 +38997,7 @@ Transform:
   m_GameObject: {fileID: 2047477738}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.09, y: 0, z: -1.46}
+  m_LocalPosition: {x: 7.77, y: 0.31, z: -1.53}
   m_LocalScale: {x: 2.7262, y: 7.8365107, z: 3.789201}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41277,6 +41277,10 @@ PrefabInstance:
       propertyPath: footstepAudio
       value: 
       objectReference: {fileID: 1510690674}
+    - target: {fileID: 6171787786114817505, guid: 6afd8924a28c2a7408b92d817cbeda92, type: 3}
+      propertyPath: playerDetected
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6171787786114817505, guid: 6afd8924a28c2a7408b92d817cbeda92, type: 3}
       propertyPath: 'patrolPoints.Array.data[0]'
       value: 
