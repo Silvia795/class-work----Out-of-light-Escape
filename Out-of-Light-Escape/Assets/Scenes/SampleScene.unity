@@ -41278,8 +41278,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1510690674}
     - target: {fileID: 6171787786114817505, guid: 6afd8924a28c2a7408b92d817cbeda92, type: 3}
+      propertyPath: gunRotateSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171787786114817505, guid: 6afd8924a28c2a7408b92d817cbeda92, type: 3}
       propertyPath: playerDetected
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6171787786114817505, guid: 6afd8924a28c2a7408b92d817cbeda92, type: 3}
+      propertyPath: targetFaceSpeed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6171787786114817505, guid: 6afd8924a28c2a7408b92d817cbeda92, type: 3}
       propertyPath: 'patrolPoints.Array.data[0]'
