@@ -86,6 +86,8 @@ public class playerController : MonoBehaviour, IDamage, IPickup
             changeGun();
         }
 
+      
+
     }
 
     // Update is called once per frame
@@ -117,11 +119,12 @@ public class playerController : MonoBehaviour, IDamage, IPickup
         {
             isCrouching = false;
             controller.height = standingHeight;
+            
         }
     }
 
     bool CanStandUp()
-    {
+    { 
         return !Physics.Raycast(transform.position, Vector3.up, standingHeight);
     }
 
