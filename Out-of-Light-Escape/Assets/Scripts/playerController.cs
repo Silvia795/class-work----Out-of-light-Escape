@@ -91,6 +91,9 @@ public class playerController : MonoBehaviour, IDamage, IPickup
     // Update is called once per frame
     void Update()
     {
+        if(gamemanager.instance.isPaused)
+            { return; }
+
         crouch();
         sprint();
         movement();

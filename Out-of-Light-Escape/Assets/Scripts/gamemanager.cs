@@ -103,6 +103,9 @@ public class gamemanager : MonoBehaviour
     {
         isPaused = false;
         Time.timeScale = timeScaleOrig;
+
+        Input.ResetInputAxes();
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         menuActive.SetActive(false);
