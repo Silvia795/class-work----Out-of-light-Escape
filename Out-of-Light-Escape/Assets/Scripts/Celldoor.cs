@@ -25,8 +25,7 @@ public class CellDoor : MonoBehaviour
 
         closedPosition = doorObject.transform.position;
 
-        // Slides sideways
-        openPosition = closedPosition + doorObject.transform.right * slideDistance;
+        openPosition = closedPosition + Vector3.up * slideDistance;
     }
 
     void Update()
