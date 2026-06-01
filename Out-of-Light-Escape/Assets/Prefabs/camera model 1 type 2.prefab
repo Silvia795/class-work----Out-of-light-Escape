@@ -254,7 +254,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 70.73, y: 1.604, z: 32.65}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.70000005, y: 0.7, z: 0.70000005}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2025616023886652895}
@@ -732,8 +732,8 @@ GameObject:
   - component: {fileID: 2803491027419955050}
   - component: {fileID: 3049368830257279022}
   - component: {fileID: 1922252428167458166}
-  - component: {fileID: 2949239839531485350}
   - component: {fileID: 4289639612803551794}
+  - component: {fileID: 1795814565595244332}
   m_Layer: 0
   m_Name: camera body
   m_TagString: Untagged
@@ -836,7 +836,30 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!135 &2949239839531485350
+--- !u!114 &4289639612803551794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973473435267018134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46bb7c98147a8f944b04d1985f1d9aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::cameraDetection
+  cameraHead: {fileID: 6017838326447648807}
+  player: {fileID: 0}
+  viewMask:
+    serializedVersion: 2
+    m_Bits: 9
+  scanSpeed: 0.3
+  scanAngle: 60
+  rotateSpeed: 5
+  detectionSpeed: 0.25
+  loseSpeed: 0.5
+  detectionGracePeriod: 0.2
+--- !u!135 &1795814565595244332
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -855,30 +878,8 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 30
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4289639612803551794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7973473435267018134}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46bb7c98147a8f944b04d1985f1d9aed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::cameraDetection
-  cameraHead: {fileID: 6017838326447648807}
-  player: {fileID: 0}
-  viewMask:
-    serializedVersion: 2
-    m_Bits: 8
-  scanSpeed: 0.3
-  scanAngle: 60
-  rotateSpeed: 5
-  detectionSpeed: 0.25
-  loseSpeed: 0.5
+  m_Radius: 10
+  m_Center: {x: 0, y: -30, z: 15}
 --- !u!1 &8295642919191589262
 GameObject:
   m_ObjectHideFlags: 0

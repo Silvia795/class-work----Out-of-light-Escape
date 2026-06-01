@@ -14,6 +14,10 @@ public class cameraDetection : MonoBehaviour
     [SerializeField] float detectionSpeed = 0.5f;
     [SerializeField] float loseSpeed = 0.75f;
 
+    [SerializeField] float detectionGracePeriod = 0.2f;
+    float timeSinceLastSeen = 0f;
+    bool isLockingOnPlayer = false;
+
     float detectionAmount;
     bool playerInRange;
 
@@ -27,6 +31,20 @@ public class cameraDetection : MonoBehaviour
         bool canSeePlayer = playerInRange && CanSeePlayer();
 
         if (canSeePlayer)
+        {
+            timeSinceLastSeen = 0f;
+            isLockingOnPlayer = true;
+        }
+        else
+        {
+            timeSinceLastSeen += Time.deltaTime;
+            if (timeSinceLastSeen >= detectionGracePeriod)
+            {
+                isLockingOnPlayer = false;
+            }
+        }
+
+        if (isLockingOnPlayer)
         {
             LockOnPlayer();
             detectionAmount += detectionSpeed * Time.deltaTime;
