@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 654474951496187276}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.36, y: 0.314, z: -0.4982}
+  m_LocalPosition: {x: -0.381, y: 0.31, z: 0.507}
   m_LocalScale: {x: 0.1, y: 0.01, z: 0.1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -142,7 +142,7 @@ Transform:
   m_GameObject: {fileID: 4304431738931776965}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -0.008, z: -0.518}
+  m_LocalPosition: {x: -0.023, y: -0.03, z: 0.513}
   m_LocalScale: {x: 0.5, y: 0.03, z: 0.6}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -384,7 +384,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2126960651427336851}
-  - component: {fileID: 5932070623309769208}
   - component: {fileID: 5947294572619486191}
   - component: {fileID: 1339406694225566601}
   - component: {fileID: 2435517474774254912}
@@ -411,21 +410,6 @@ Transform:
   - {fileID: 6017838326447648807}
   m_Father: {fileID: 8944590309542738951}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &5932070623309769208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5985248653607536042}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb1fb24624cc7f94b81335447a1a02fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SecurityCamera
-  maxAngle: 75
-  minTime: 20
-  maxTime: 30
 --- !u!33 &5947294572619486191
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -748,6 +732,8 @@ GameObject:
   - component: {fileID: 2803491027419955050}
   - component: {fileID: 3049368830257279022}
   - component: {fileID: 1922252428167458166}
+  - component: {fileID: 2949239839531485350}
+  - component: {fileID: 4289639612803551794}
   m_Layer: 0
   m_Name: camera body
   m_TagString: Untagged
@@ -763,15 +749,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7973473435267018134}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 0, y: -2.66, z: -0.771}
+  m_LocalRotation: {x: 0.99888957, y: -0.0000000018626447, z: 0.047112767, w: 0}
+  m_LocalPosition: {x: 0, y: -2.6600175, z: -0.771002}
   m_LocalScale: {x: 1.5, y: 4.5, z: 3.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2674891320405389491}
   - {fileID: 6409511420997887020}
   m_Father: {fileID: 2126960651427336851}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 0, y: 174.599, z: 180}
 --- !u!33 &2803491027419955050
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -850,6 +836,49 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &2949239839531485350
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973473435267018134}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 119
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 30
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4289639612803551794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7973473435267018134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46bb7c98147a8f944b04d1985f1d9aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::cameraDetection
+  cameraHead: {fileID: 6017838326447648807}
+  player: {fileID: 0}
+  viewMask:
+    serializedVersion: 2
+    m_Bits: 8
+  scanSpeed: 0.3
+  scanAngle: 60
+  rotateSpeed: 5
+  detectionSpeed: 0.25
+  loseSpeed: 0.5
 --- !u!1 &8295642919191589262
 GameObject:
   m_ObjectHideFlags: 0

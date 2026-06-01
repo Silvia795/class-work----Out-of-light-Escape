@@ -767,7 +767,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::SecurityCamera
   maxAngle: 75
   minTime: 20
-  maxTime: 35
+  maxTime: 30
 --- !u!33 &4324451962378743157
 MeshFilter:
   m_ObjectHideFlags: 0
