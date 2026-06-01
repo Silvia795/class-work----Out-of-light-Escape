@@ -19,7 +19,7 @@ public class gamemanager : MonoBehaviour
 
     [SerializeField] TMP_Text chargeText;
 
-
+    private bool gameEnded;
     public Image playerHPBar;
     public float currentDetection;
     public GameObject playerDamageFlash;
@@ -51,6 +51,9 @@ public class gamemanager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (gameEnded)
+            return;
+
         if (Input.GetButtonDown("Cancel"))
         {
             if (menuActive == null)
@@ -120,6 +123,11 @@ public class gamemanager : MonoBehaviour
     }
     public void playerWin()
     {
+        gameEnded = true;
+
+        if (menuActive != null)
+            menuActive.SetActive(false);
+
         statePause();
         menuActive = menuWin;
         menuActive.SetActive(true);
